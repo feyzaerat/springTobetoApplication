@@ -2,17 +2,20 @@ package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
 @Table(name="cars")
 @Entity
 
 public class Car {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name="model_year")
+    @Column(name = "model_year")
     private int modelYear;
-    @Column(name="model_name")
+    @Column(name = "model_name")
     private String modelName;
 
     @Column(name = "is_active")
@@ -22,9 +25,11 @@ public class Car {
     private int rank;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private Brand brand;
+
+
 }

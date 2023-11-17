@@ -1,9 +1,9 @@
 package com.example.springProjectTobeto.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+
+import java.util.Date;
+import java.util.List;
 
 @Table(name = "customers")
 @Entity
@@ -11,6 +11,8 @@ import jakarta.persistence.Table;
 public class Customer {
 
     @Id
+    @Column(name = "id")
+    private int id;
     @Column(name = "name")
     private String name;
 
@@ -27,5 +29,7 @@ public class Customer {
     private int rank;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private Date createdAt;
+
+
 }

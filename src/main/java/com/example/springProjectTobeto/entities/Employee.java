@@ -2,6 +2,8 @@ package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+
 @Table(name = "employees")
 @Entity
 public class Employee {
@@ -11,7 +13,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "full-name")
+    @Column(name = "full_name")
     private String fullName;
 
     @Column(name = "phone_number")
@@ -24,10 +26,10 @@ public class Employee {
     private String mailAddress;
 
     @Column(name = "birth_date")
-    private String birthDate;
+    private Date birthDate;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private Date createdAt;
 
     @Column(name = "is_active")
     private int isActive;

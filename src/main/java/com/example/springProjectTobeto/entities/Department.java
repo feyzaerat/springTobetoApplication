@@ -2,6 +2,9 @@ package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
 @Table(name = "departments")
 @Entity
 
@@ -22,6 +25,7 @@ public class Department {
     private int rank;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private Date createdAt;
+
 
 }

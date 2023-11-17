@@ -2,6 +2,9 @@ package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
+import java.util.List;
+
 @Table(name = "orders")
 @Entity
 public class Order {
@@ -27,20 +30,25 @@ public class Order {
     private int rank;
 
     @Column(name = "created_at")
-    private String createdAt;
+    private Date createdAt;
 
     @ManyToOne
 
     @JoinColumn(name = "employee_id")
     private Employee employee;
+
+
+    @ManyToOne
     @JoinColumn(name = "car_id")
     private Car car;
 
+
+    @ManyToOne
     @JoinColumn(name="customer_id")
     private Customer customer;
 
-    @JoinColumn(name="bill_id")
-    private Bill bill;
+
+
 
 
 
