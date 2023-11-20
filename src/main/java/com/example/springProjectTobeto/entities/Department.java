@@ -27,5 +27,8 @@ public class Department {
     @Column(name = "created_at")
     private Date createdAt;
 
+   /* @OneToMany(mappedBy = "employee")
+    private List<Employee> employees;*/
+
 
 }
