@@ -1,4 +1,14 @@
 package com.example.springProjectTobeto.repositories;
 
-public interface BrandRepository {
+
+import com.example.springProjectTobeto.entities.Brand;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+//DATA jpa
+//Generic
+public interface BrandRepository extends JpaRepository<Brand,Integer> {
+    //data access layer/object
+
+
+
 }
