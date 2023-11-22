@@ -1,6 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.bill.AddBillRequest;
+import com.example.springProjectTobeto.dtos.requests.policy.AddPolicyRequest;
 import com.example.springProjectTobeto.dtos.requests.policy.UpdatePolicyRequest;
 import com.example.springProjectTobeto.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
@@ -30,12 +30,14 @@ public class PoliciesController {
         GetPolicyResponse dto = new GetPolicyResponse();
 
         dto.setName(policy.getName());
+        dto.setIsActive(policy.getIsActive());
+        dto.setRank(policy.getRank());
 
         return dto;
     }
 
     @PostMapping
-    public void add(@RequestBody AddBillRequest policyForAddDto){
+    public void add(@RequestBody AddPolicyRequest policyForAddDto){
 
         Policy policy = new Policy();
         policy.setName(policyForAddDto.getName());
