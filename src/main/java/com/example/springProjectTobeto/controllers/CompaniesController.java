@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.company.AddCompanyRequest;
 import com.example.springProjectTobeto.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.entities.Company;
 import com.example.springProjectTobeto.repositories.CompanyRepository;
@@ -30,7 +31,17 @@ public class CompaniesController {
     }
 
     @PostMapping
-    public void add(@RequestBody Company company){
+    public void add(@RequestBody AddCompanyRequest companyForAddDto) {
+
+        Company company = new Company();
+
+        company.setName(companyForAddDto.getName());
+        company.setContactName(companyForAddDto.getContactName());
+        company.setContactPhone(companyForAddDto.getContactPhone());
+        company.setAddress(companyForAddDto.getAddress());
+        company.setIsActive(companyForAddDto.getIsActive());
+        company.setRank(companyForAddDto.getRank());
+
         companyRepository.save(company);
     }
 
