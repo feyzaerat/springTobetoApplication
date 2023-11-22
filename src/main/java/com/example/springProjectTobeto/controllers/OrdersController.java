@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.responses.order.GetOrderResponse;
 import com.example.springProjectTobeto.entities.Order;
 import com.example.springProjectTobeto.repositories.OrderRepository;
 import org.aspectj.weaver.ast.Or;
@@ -22,8 +23,10 @@ public class OrdersController {
     }
 
     @GetMapping("{id}")
-    public Order getById(@PathVariable int id){
-        return orderRepository.findById(id).orElseThrow();
+    public GetOrderResponse getById(@PathVariable int id){
+        Order order = orderRepository.findById(id).orElseThrow();
+        GetOrderResponse dto = new GetOrderResponse();
+        return dto;
     }
     @PostMapping
     public void add(@RequestBody Order order){
