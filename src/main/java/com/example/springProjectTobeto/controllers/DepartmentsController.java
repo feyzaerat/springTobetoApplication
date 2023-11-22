@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.responses.department.GetDepartmentResponse;
 import com.example.springProjectTobeto.entities.Department;
 import com.example.springProjectTobeto.repositories.DepartmentRepository;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +23,11 @@ public class DepartmentsController {
     }
 
     @GetMapping("{id}")
-    public Department getById(@PathVariable int id){
-        return departmentRepository.findById(id).orElseThrow();
+    public GetDepartmentResponse getById(@PathVariable int id){
+        Department department = departmentRepository.findById(id).orElseThrow();
+        GetDepartmentResponse dto= new GetDepartmentResponse();
+
+        return dto;
     }
 
     @PostMapping
