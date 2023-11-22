@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.customer.AddCustomerRequest;
 import com.example.springProjectTobeto.dtos.responses.customer.GetCustomerResponse;
 import com.example.springProjectTobeto.entities.Customer;
 import com.example.springProjectTobeto.repositories.CustomerRepository;
@@ -30,7 +31,16 @@ public class CustomersController {
     }
 
     @PostMapping
-    public void addCustomer(@RequestBody Customer customer){
+    public void addCustomer(@RequestBody AddCustomerRequest customerForAddDto) {
+
+        Customer customer = new Customer();
+        customer.setName(customerForAddDto.getName());
+        customer.setPhone(customerForAddDto.getPhone());
+        customer.setMailAddress(customerForAddDto.getMailAddress());
+        customer.setAddress(customerForAddDto.getAddress());
+        customer.setIsActive(customerForAddDto.getIsActive());
+        customer.setRank(customerForAddDto.getRank());
+
         customerRepository.save(customer);
     }
 
