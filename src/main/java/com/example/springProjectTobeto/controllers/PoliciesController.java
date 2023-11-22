@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.policy.UpdatePolicyRequest;
 import com.example.springProjectTobeto.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.repositories.PolicyRepository;
@@ -38,12 +39,11 @@ public class PoliciesController {
     }
 
     @PutMapping("{id}")
-    public void updatePolicy(@PathVariable int id, @RequestBody Policy policy){
+    public void updatePolicy(@PathVariable int id, @RequestBody UpdatePolicyRequest policyForUpdateDto){
         Policy updatePolicy = policyRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no policy"));
-        updatePolicy.setId(policy.getId());
-        updatePolicy.setName(policy.getName());
-        updatePolicy.setIsActive(policy.getIsActive());
+
+        updatePolicy.setName(policyForUpdateDto.getName());
 
 
         policyRepository.save(updatePolicy);
