@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.employee.AddEmployeeRequest;
 import com.example.springProjectTobeto.dtos.requests.employee.UpdateEmployeeRequest;
 import com.example.springProjectTobeto.dtos.responses.employee.GetEmployeeResponse;
 import com.example.springProjectTobeto.repositories.EmployeeRepository;
@@ -36,7 +37,18 @@ public class EmployeesController {
 
 
     @PostMapping
-    public void add(@RequestBody Employee employee){employeeRepository.save(employee);}
+    public void add(@RequestBody AddEmployeeRequest employeeForAddDto){
+
+        Employee employee = new Employee();
+
+        employee.setFullName(employeeForAddDto.getFullName());
+        employee.setPhoneNumber(employeeForAddDto.getPhoneNumber());
+        employee.setMailAddress(employeeForAddDto.getMailAddress());
+        employee.setAddress(employeeForAddDto.getAddress());
+        employee.setIsActive(employeeForAddDto.getIsActive());
+        employee.setRank(employeeForAddDto.getRank());
+
+        employeeRepository.save(employee);}
 
     @PutMapping("{id}")
     public void update(@PathVariable int id,@RequestBody UpdateEmployeeRequest employeeForUpdateDto){
