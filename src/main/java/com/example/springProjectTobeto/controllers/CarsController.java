@@ -1,5 +1,7 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.car.AddCarRequest;
+import com.example.springProjectTobeto.dtos.responses.car.GetCarResponse;
 import com.example.springProjectTobeto.entities.Car;
 import com.example.springProjectTobeto.repositories.CarRepository;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +24,14 @@ public class CarsController {
     }
 
     @GetMapping("{id}")
-    public Car getById(@PathVariable int id){
-        return carRepository.findById(id).orElseThrow();
+    public GetCarResponse getById(@PathVariable int id){
+        Car car = carRepository.findById(id).orElseThrow();
+
+        GetCarResponse dto = new GetCarResponse();
+        dto.setModelName(car.getModelName());
+
+        return dto;
+
     }
 
     @PostMapping

@@ -1,4 +1,5 @@
 package com.example.springProjectTobeto.controllers;
+import com.example.springProjectTobeto.dtos.responses.bill.GetBillResponse;
 import com.example.springProjectTobeto.entities.Bill;
 import com.example.springProjectTobeto.repositories.BillRepository;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,11 @@ public class BillsController {
     }
 
     @GetMapping("{id}")
-    public Bill getById(@PathVariable int id){
-        return billRepository.findById(id).orElseThrow();
+    public GetBillResponse getById(@PathVariable int id){
+        Bill bill = billRepository.findById(id).orElseThrow();
+
+        GetBillResponse dto = new GetBillResponse();
+        return dto;
     }
 
     @PostMapping
@@ -49,7 +53,6 @@ public class BillsController {
         Bill deleteBill = billRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no bill id"));
         billRepository.delete(deleteBill);
-
     }
 
 }
