@@ -35,7 +35,15 @@ public class CarsController {
     }
 
     @PostMapping
-    public void add(@RequestBody Car car){
+    public void add(@RequestBody AddCarRequest carForDto){
+
+        Car car = new Car();
+
+        car.setModelName(carForDto.getModelName());
+        car.setModelYear(carForDto.getModelYear());
+        car.setIsActive(carForDto.getIsActive());
+        car.setRank(carForDto.getRank());
+
         carRepository.save(car);
     }
 

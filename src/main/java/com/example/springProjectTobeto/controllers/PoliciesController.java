@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.repositories.PolicyRepository;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +22,11 @@ public class PoliciesController {
     }
 
     @GetMapping("{id}")
-    public Policy getById(@PathVariable int id){
-        return policyRepository.findById(id).orElseThrow();
+    public GetPolicyResponse getById(@PathVariable int id){
+        Policy policy = policyRepository.findById(id).orElseThrow();
+
+        GetPolicyResponse dto = new GetPolicyResponse();
+        return dto;
     }
 
     @PostMapping

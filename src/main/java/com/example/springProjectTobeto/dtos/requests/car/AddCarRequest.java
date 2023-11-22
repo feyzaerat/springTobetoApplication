@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class AddCarRequest {
 
     private String modelName;
-    private String modelYear;
+    private int modelYear;
     private int isActive;
     private int rank;
 }
