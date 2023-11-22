@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.department.UpdateDepartmentRequest;
 import com.example.springProjectTobeto.dtos.responses.department.GetDepartmentResponse;
 import com.example.springProjectTobeto.entities.Department;
 import com.example.springProjectTobeto.repositories.DepartmentRepository;
@@ -38,13 +39,11 @@ public class DepartmentsController {
     }
 
     @PutMapping("{id}")
-    public void updateDepartment(@PathVariable int id, @RequestBody Department department){
+    public void updateDepartment(@PathVariable int id, @RequestBody UpdateDepartmentRequest departmentForUpdateDto){
         Department updateDepartment = departmentRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no department"));
-        updateDepartment.setId(department.getId());
-        updateDepartment.setName(department.getName());
-        updateDepartment.setRank(department.getRank());
-        updateDepartment.setIsActive(department.getIsActive());
+        updateDepartment.setName(departmentForUpdateDto.getName());
+
 
         departmentRepository.save(updateDepartment);
     }
