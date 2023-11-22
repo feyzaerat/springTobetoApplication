@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.responses.employee.GetEmployeeResponse;
 import com.example.springProjectTobeto.repositories.EmployeeRepository;
 import com.example.springProjectTobeto.entities.Employee;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,10 @@ public class EmployeesController {
     public List<Employee> getAll(){return employeeRepository.findAll();}
 
     @GetMapping("{id}")
-    public Employee getbyId(@PathVariable int id) {
-        return employeeRepository.findById(id).orElseThrow();
+    public GetEmployeeResponse getbyId(@PathVariable int id) {
+        Employee employee = employeeRepository.findById(id).orElseThrow();
+        GetEmployeeResponse dto = new GetEmployeeResponse();
+        return dto;
     }
 
 
