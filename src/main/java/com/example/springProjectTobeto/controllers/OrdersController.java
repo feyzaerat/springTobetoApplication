@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.order.UpdateOrderRequest;
 import com.example.springProjectTobeto.dtos.responses.order.GetOrderResponse;
 import com.example.springProjectTobeto.entities.Order;
 import com.example.springProjectTobeto.repositories.OrderRepository;
@@ -38,15 +39,14 @@ public class OrdersController {
         orderRepository.save(order);
     }
     @PutMapping("{id}")
-    public void updateOrder(@PathVariable int id, @RequestBody Order order){
+    public void updateOrder(@PathVariable int id, @RequestBody UpdateOrderRequest orderForUpdateDto){
         Order updateOrder = orderRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no order"));
-        updateOrder.setId(order.getId());
-        updateOrder.setName(order.getName());
-        updateOrder.setQuantity(order.getQuantity());
-        updateOrder.setUnitPrice(order.getUnitPrice());
-        updateOrder.setIsActive(order.getIsActive());
-        updateOrder.setRank(order.getRank());
+
+        updateOrder.setName(orderForUpdateDto.getName());
+        updateOrder.setQuantity(orderForUpdateDto.getQuantity());
+        updateOrder.setUnitPrice(orderForUpdateDto.getUnitPrice());
+
 
 
         orderRepository.save(updateOrder);
