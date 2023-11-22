@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.responses.customer.GetCustomerResponse;
 import com.example.springProjectTobeto.entities.Customer;
 import com.example.springProjectTobeto.repositories.CustomerRepository;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,11 @@ public class CustomersController {
     }
 
     @GetMapping("{id}")
-    public Customer getById(@PathVariable int id){
-        return customerRepository.findById(id)
+    public GetCustomerResponse getById(@PathVariable int id){
+        Customer customer = customerRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no id"));
+        GetCustomerResponse dto = new GetCustomerResponse();
+        return dto;
     }
 
     @PostMapping
