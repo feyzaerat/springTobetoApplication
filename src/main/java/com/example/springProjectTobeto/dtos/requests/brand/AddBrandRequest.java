@@ -8,5 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddBrandRequest {
+
     private String name;
+    private int isActive;
+    private int rank;
 }

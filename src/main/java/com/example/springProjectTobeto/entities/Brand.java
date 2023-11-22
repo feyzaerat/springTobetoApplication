@@ -22,6 +22,8 @@ public class Brand {
 
     @Column(name = "name")
     private String name;
+    private int isActive;
+    private int rank;
 
     @OneToMany(mappedBy = "brand")
     @JsonIgnore

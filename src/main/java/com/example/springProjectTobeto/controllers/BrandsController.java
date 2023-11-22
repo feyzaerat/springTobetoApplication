@@ -39,6 +39,8 @@ public class BrandsController {
 
         Brand brand = new Brand();
         brand.setName(brandForAddDto.getName());
+        brand.setIsActive(brandForAddDto.getIsActive());
+        brand.setRank(brandForAddDto.getRank());
 
         brandRepository.save(brand);
     }
@@ -48,6 +50,7 @@ public class BrandsController {
         Brand updateBrand = brandRepository.findById(id).orElseThrow();
 
         updateBrand.setName(brandForUpdateDto.getName());
+
         brandRepository.save(updateBrand);
     }
     @DeleteMapping("{id}")

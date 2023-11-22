@@ -9,4 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetBrandResponse {
     private String name;
+    private int isActive;
+    private int rank;
 }
