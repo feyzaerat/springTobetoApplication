@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.dtos.requests.bill.AddBillRequest;
+import com.example.springProjectTobeto.dtos.requests.bill.UpdateBillRequest;
 import com.example.springProjectTobeto.dtos.responses.bill.GetBillResponse;
 import com.example.springProjectTobeto.entities.Bill;
 import com.example.springProjectTobeto.repositories.BillRepository;
@@ -47,15 +48,12 @@ public class BillsController {
     }
 
     @PutMapping("{id}")
-    public void updateBill(@PathVariable int id, @RequestBody Bill bill){
-        Bill updateBill = billRepository.findById(bill.getId())
+    public void updateBill(@PathVariable int id, @RequestBody UpdateBillRequest billForUpdateDto){
+        Bill updateBill = billRepository.findById(id)
                 .orElseThrow(() ->new RuntimeException("There is no record " ));
-        updateBill.setId(bill.getId());
-        updateBill.setName(bill.getName());
-        updateBill.setAmount(bill.getAmount());
-        updateBill.setType(bill.getType());
-        updateBill.setRank(bill.getRank());
-        updateBill.setOrder(bill.getOrder());
+        updateBill.setName(billForUpdateDto.getName());
+        updateBill.setAmount(billForUpdateDto.getAmount());
+        updateBill.setType(billForUpdateDto.getType());
 
         billRepository.save(updateBill);
     }
