@@ -1,4 +1,5 @@
 package com.example.springProjectTobeto.controllers;
+import com.example.springProjectTobeto.dtos.requests.bill.AddBillRequest;
 import com.example.springProjectTobeto.dtos.responses.bill.GetBillResponse;
 import com.example.springProjectTobeto.entities.Bill;
 import com.example.springProjectTobeto.repositories.BillRepository;
@@ -30,7 +31,14 @@ public class BillsController {
     }
 
     @PostMapping
-    public void add(@RequestBody Bill bill){
+    public void add(@RequestBody AddBillRequest billForAddDto){
+        Bill bill = new Bill();
+
+        bill.setName(billForAddDto.getName());
+        bill.setType(billForAddDto.getType());
+        bill.setAmount(billForAddDto.getAmount());
+        bill.setRank(billForAddDto.getRank());
+
         billRepository.save(bill);
     }
 
