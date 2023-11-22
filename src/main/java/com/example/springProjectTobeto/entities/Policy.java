@@ -1,11 +1,19 @@
 package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Table(name = "policies")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Policy {
 
@@ -17,11 +25,6 @@ public class Policy {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "created_at")
-    private Date createdAt;
-
-    @Column(name = "end_date")
-    private Date endDate;
 
     @Column(name = "is_active")
     private int isActive;

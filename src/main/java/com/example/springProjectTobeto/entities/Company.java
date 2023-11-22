@@ -1,12 +1,20 @@
 package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
 @Table(name = "companies")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Company {
     @Id
@@ -32,9 +40,6 @@ public class Company {
 
     @Column(name = "rank")
     private int rank;
-
-    @Column(name = "created_at")
-    private Date createdAt;
 
 
 

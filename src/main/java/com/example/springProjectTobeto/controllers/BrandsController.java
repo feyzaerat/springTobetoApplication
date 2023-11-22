@@ -3,7 +3,7 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.entities.Brand;
 import com.example.springProjectTobeto.repositories.BrandRepository;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -22,23 +22,25 @@ public class BrandsController {
     }
     @GetMapping("{id}")
     public Brand getById(@PathVariable  int id){
-        return brandRepository.findById(id).orElseThrow();
+        return brandRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("There is no brand id"));
     }
     @PostMapping
     public void add(@RequestBody Brand brand){
         brandRepository.save(brand);
     }
-    @PutMapping
-    public void update(@RequestBody Brand brand) {
 
+    @PutMapping("{id}")
+    public void update(@PathVariable int id, @RequestBody Brand brand) {
+        Brand updateBrand = brandRepository.findById(id).orElseThrow();
+        updateBrand.setId(brand.getId());
+        updateBrand.setName(brand.getName());
+        brandRepository.save(updateBrand);
     }
     @DeleteMapping("{id}")
-    public void delete(@PathVariable int id)
-    {
-        // kod buraya geliyor ise exception fırlamamıştır..
-        //Brand brandToDelete = brandRepository.findById(id).orElseThrow();
-        // özel kontroller
-        //brandRepository.delete(brandToDelete);
-        brandRepository.deleteById(id);
+    public void delete(@PathVariable int id) {
+        Brand deleteBrand = brandRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("There is no brand id"));
+        brandRepository.delete(deleteBrand);
     }
 }

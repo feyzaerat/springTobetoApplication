@@ -1,11 +1,19 @@
 package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Table(name = "employees")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Employee {
 
     @Id
@@ -25,11 +33,7 @@ public class Employee {
     @Column(name = "mail_address")
     private String mailAddress;
 
-    @Column(name = "birth_date")
-    private Date birthDate;
 
-    @Column(name = "created_at")
-    private Date createdAt;
 
     @Column(name = "is_active")
     private int isActive;

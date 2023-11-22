@@ -28,8 +28,6 @@ public class Car {
     @Column(name = "rank")
     private int rank;
 
-    @Column(name = "created_at")
-    private Date createdAt;
 
     @ManyToOne
     @JoinColumn(name = "brand_id")

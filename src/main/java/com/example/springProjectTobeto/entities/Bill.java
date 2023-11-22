@@ -1,11 +1,19 @@
 package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Table(name = "bills")
 @Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 
 public class Bill {
     @Id
@@ -25,8 +33,6 @@ public class Bill {
     @Column(name = "rank")
     private int rank;
 
-    @Column(name = "created_at")
-    private Date createdAt;
 
     @ManyToOne
 

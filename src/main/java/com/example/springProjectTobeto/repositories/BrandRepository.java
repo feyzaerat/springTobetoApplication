@@ -7,8 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 //DATA jpa
 //Generic
 public interface BrandRepository extends JpaRepository<Brand,Integer> {
-    //data access layer/object
-
-
 
 }
