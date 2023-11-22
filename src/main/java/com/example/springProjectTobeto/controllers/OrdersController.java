@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.order.AddOrderRequest;
 import com.example.springProjectTobeto.dtos.requests.order.UpdateOrderRequest;
 import com.example.springProjectTobeto.dtos.responses.order.GetOrderResponse;
 import com.example.springProjectTobeto.entities.Order;
@@ -35,7 +36,16 @@ public class OrdersController {
         return dto;
     }
     @PostMapping
-    public void add(@RequestBody Order order){
+    public void add(@RequestBody AddOrderRequest orderForAddDto){
+
+        Order order = new Order();
+
+        order.setName(orderForAddDto.getName());
+        order.setUnitPrice(orderForAddDto.getUnitPrice());
+        order.setQuantity(orderForAddDto.getQuantity());
+        order.setIsActive(orderForAddDto.getIsActive());
+        order.setRank(orderForAddDto.getRank());
+
         orderRepository.save(order);
     }
     @PutMapping("{id}")
