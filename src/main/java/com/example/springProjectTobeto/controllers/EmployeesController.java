@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.requests.employee.UpdateEmployeeRequest;
 import com.example.springProjectTobeto.dtos.responses.employee.GetEmployeeResponse;
 import com.example.springProjectTobeto.repositories.EmployeeRepository;
 import com.example.springProjectTobeto.entities.Employee;
@@ -38,17 +39,15 @@ public class EmployeesController {
     public void add(@RequestBody Employee employee){employeeRepository.save(employee);}
 
     @PutMapping("{id}")
-    public void update(@PathVariable int id,@RequestBody Employee employee){
+    public void update(@PathVariable int id,@RequestBody UpdateEmployeeRequest employeeForUpdateDto){
         Employee updateEmployee = employeeRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("there is no Employee"));
-        updateEmployee.setId(employee.getId());
-        updateEmployee.setFullName(employee.getFullName());
-        updateEmployee.setAddress(employee.getAddress());
-        updateEmployee.setMailAddress(employee.getMailAddress());
-        updateEmployee.setPhoneNumber(employee.getPhoneNumber());
-        updateEmployee.setIsActive(employee.getIsActive());
-        updateEmployee.setRank(employee.getRank());
-        updateEmployee.setDepartment(employee.getDepartment());
+
+        updateEmployee.setFullName(employeeForUpdateDto.getFullName());
+        updateEmployee.setAddress(employeeForUpdateDto.getAddress());
+        updateEmployee.setMailAddress(employeeForUpdateDto.getMailAddress());
+        updateEmployee.setPhoneNumber(employeeForUpdateDto.getPhoneNumber());
+
 
         employeeRepository.save(updateEmployee);
 
