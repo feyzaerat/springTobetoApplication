@@ -26,6 +26,11 @@ public class OrdersController {
     public GetOrderResponse getById(@PathVariable int id){
         Order order = orderRepository.findById(id).orElseThrow();
         GetOrderResponse dto = new GetOrderResponse();
+
+        dto.setName(order.getName());
+        dto.setQuantity(order.getQuantity());
+        dto.setUnitPrice(order.getUnitPrice());
+
         return dto;
     }
     @PostMapping

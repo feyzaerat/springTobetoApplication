@@ -27,6 +27,11 @@ public class CustomersController {
         Customer customer = customerRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no id"));
         GetCustomerResponse dto = new GetCustomerResponse();
+        dto.setName(customer.getName());
+        dto.setPhone(customer.getPhone());
+        dto.setMailAddress(customer.getMailAddress());
+        dto.setAddress(customer.getAddress());
+
         return dto;
     }
 

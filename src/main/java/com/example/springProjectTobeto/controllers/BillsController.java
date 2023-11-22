@@ -27,6 +27,10 @@ public class BillsController {
         Bill bill = billRepository.findById(id).orElseThrow();
 
         GetBillResponse dto = new GetBillResponse();
+
+        dto.setName(bill.getName());
+        dto.setAmount(bill.getAmount());
+
         return dto;
     }
 

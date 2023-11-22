@@ -27,6 +27,8 @@ public class DepartmentsController {
         Department department = departmentRepository.findById(id).orElseThrow();
         GetDepartmentResponse dto= new GetDepartmentResponse();
 
+        dto.setName(department.getName());
+
         return dto;
     }
 

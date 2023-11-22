@@ -27,6 +27,12 @@ public class CompaniesController {
         Company company = companyRepository.findById(id).orElseThrow();
 
         GetCompanyResponse dto = new GetCompanyResponse();
+
+        dto.setName(company.getName());
+        dto.setContactName(company.getContactName());
+        dto.setContactPhone(company.getContactPhone());
+        dto.setAddress(company.getAddress());
+
         return dto;
     }
 

@@ -26,6 +26,9 @@ public class PoliciesController {
         Policy policy = policyRepository.findById(id).orElseThrow();
 
         GetPolicyResponse dto = new GetPolicyResponse();
+
+        dto.setName(policy.getName());
+
         return dto;
     }
 

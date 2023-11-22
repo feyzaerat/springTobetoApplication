@@ -24,6 +24,12 @@ public class EmployeesController {
     public GetEmployeeResponse getbyId(@PathVariable int id) {
         Employee employee = employeeRepository.findById(id).orElseThrow();
         GetEmployeeResponse dto = new GetEmployeeResponse();
+
+        dto.setFullName(employee.getFullName());
+        dto.setMailAddress(employee.getMailAddress());
+        dto.setPhoneNumber(employee.getPhoneNumber());
+        dto.setAddress(employee.getAddress());
+
         return dto;
     }
 
