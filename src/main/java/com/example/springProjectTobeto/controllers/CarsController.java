@@ -1,6 +1,7 @@
 package com.example.springProjectTobeto.controllers;
 
 import com.example.springProjectTobeto.dtos.requests.car.AddCarRequest;
+import com.example.springProjectTobeto.dtos.requests.car.UpdateCarRequest;
 import com.example.springProjectTobeto.dtos.responses.car.GetCarResponse;
 import com.example.springProjectTobeto.entities.Car;
 import com.example.springProjectTobeto.repositories.CarRepository;
@@ -48,15 +49,12 @@ public class CarsController {
     }
 
     @PutMapping("{id}")
-    public void updateCar(@PathVariable int id, @RequestBody Car car){
+    public void updateCar(@PathVariable int id, @RequestBody UpdateCarRequest carForUpdateDto){
         Car updateCar = carRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("There is no id"));
-        updateCar.setId(car.getId());
-        updateCar.setModelName(car.getModelName());
-        updateCar.setModelYear(car.getModelYear());
-        updateCar.setRank(car.getRank());
-        updateCar.setIsActive(car.getIsActive());
-        updateCar.setBrand(car.getBrand());
+        updateCar.setModelName(carForUpdateDto.getModelName());
+        updateCar.setModelYear(carForUpdateDto.getModelYear());
+
 
         carRepository.save(updateCar);
     }
