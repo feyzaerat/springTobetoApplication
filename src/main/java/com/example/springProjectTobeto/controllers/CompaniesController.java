@@ -1,6 +1,7 @@
 package com.example.springProjectTobeto.controllers;
 
 import com.example.springProjectTobeto.dtos.requests.company.AddCompanyRequest;
+import com.example.springProjectTobeto.dtos.requests.company.UpdateCompanyRequest;
 import com.example.springProjectTobeto.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.entities.Company;
 import com.example.springProjectTobeto.repositories.CompanyRepository;
@@ -52,14 +53,13 @@ public class CompaniesController {
     }
 
     @PutMapping("{id}")
-    public void updateCompany(@PathVariable int id, @RequestBody Company company){
+    public void updateCompany(@PathVariable int id, @RequestBody UpdateCompanyRequest companyForUpdateDto){
       Company updateCompany = companyRepository.findById(id)
               .orElseThrow(()-> new RuntimeException("There is no company id"));
-        updateCompany.setId(company.getId());
-        updateCompany.setName(company.getName());
-        updateCompany.setContactName(company.getContactName());
-        updateCompany.setContactPhone(company.getContactPhone());
-        updateCompany.setAddress(company.getAddress());
+        updateCompany.setName(companyForUpdateDto.getName());
+        updateCompany.setContactName(companyForUpdateDto.getContactName());
+        updateCompany.setContactPhone(companyForUpdateDto.getContactPhone());
+        updateCompany.setAddress(companyForUpdateDto.getAddress());
 
 
 

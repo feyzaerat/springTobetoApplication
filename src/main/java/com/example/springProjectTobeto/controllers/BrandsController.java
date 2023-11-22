@@ -22,6 +22,7 @@ public class BrandsController {
     public List<Brand> getAll() {
         return brandRepository.findAll();
     }
+
     @GetMapping("{id}")
     public GetBrandResponse getById(@PathVariable int id) {
         Brand brand = brandRepository.findById(id).orElseThrow();
