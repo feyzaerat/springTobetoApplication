@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.entities.Company;
 import com.example.springProjectTobeto.repositories.CompanyRepository;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,11 @@ public class CompaniesController {
     public List<Company> getAll(){return companyRepository.findAll();}
 
     @GetMapping("{id}")
-    public Company getById(@PathVariable int id){
-        return companyRepository.findById(id).orElseThrow();
+    public GetCompanyResponse getById(@PathVariable int id){
+        Company company = companyRepository.findById(id).orElseThrow();
+
+        GetCompanyResponse dto = new GetCompanyResponse();
+        return dto;
     }
 
     @PostMapping
