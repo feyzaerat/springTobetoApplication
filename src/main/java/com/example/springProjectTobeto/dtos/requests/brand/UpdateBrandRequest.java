@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class UpdateBrandRequest {
-    private String modelName;
-    private String modelYear;
-    private int isActive;
+    private String name;
+
 }

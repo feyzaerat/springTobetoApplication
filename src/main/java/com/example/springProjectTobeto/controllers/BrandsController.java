@@ -1,6 +1,7 @@
 package com.example.springProjectTobeto.controllers;
 
 import com.example.springProjectTobeto.dtos.requests.brand.AddBrandRequest;
+import com.example.springProjectTobeto.dtos.requests.brand.UpdateBrandRequest;
 import com.example.springProjectTobeto.dtos.responses.brand.GetBrandResponse;
 import com.example.springProjectTobeto.entities.Brand;
 import com.example.springProjectTobeto.repositories.BrandRepository;
@@ -43,10 +44,10 @@ public class BrandsController {
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable int id, @RequestBody Brand brand) {
+    public void update(@PathVariable int id, @RequestBody UpdateBrandRequest brandForUpdateDto) {
         Brand updateBrand = brandRepository.findById(id).orElseThrow();
-        updateBrand.setId(brand.getId());
-        updateBrand.setName(brand.getName());
+
+        updateBrand.setName(brandForUpdateDto.getName());
         brandRepository.save(updateBrand);
     }
     @DeleteMapping("{id}")
