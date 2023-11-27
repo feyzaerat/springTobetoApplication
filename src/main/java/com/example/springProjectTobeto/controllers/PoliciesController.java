@@ -1,8 +1,8 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.policy.AddPolicyRequest;
-import com.example.springProjectTobeto.dtos.requests.policy.UpdatePolicyRequest;
-import com.example.springProjectTobeto.dtos.responses.policy.GetPolicyResponse;
+import com.example.springProjectTobeto.services.dtos.requests.policy.AddPolicyRequest;
+import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolicyRequest;
+import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.repositories.PolicyRepository;
 import org.springframework.web.bind.annotation.*;

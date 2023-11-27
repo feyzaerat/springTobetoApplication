@@ -1,8 +1,8 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.customer.AddCustomerRequest;
-import com.example.springProjectTobeto.dtos.requests.customer.UpdateCustomerRequest;
-import com.example.springProjectTobeto.dtos.responses.customer.GetCustomerResponse;
+import com.example.springProjectTobeto.services.dtos.requests.customer.AddCustomerRequest;
+import com.example.springProjectTobeto.services.dtos.requests.customer.UpdateCustomerRequest;
+import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerResponse;
 import com.example.springProjectTobeto.entities.Customer;
 import com.example.springProjectTobeto.repositories.CustomerRepository;
 import org.springframework.web.bind.annotation.*;

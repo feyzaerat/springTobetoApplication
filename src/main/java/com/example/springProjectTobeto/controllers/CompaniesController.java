@@ -1,8 +1,8 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.company.AddCompanyRequest;
-import com.example.springProjectTobeto.dtos.requests.company.UpdateCompanyRequest;
-import com.example.springProjectTobeto.dtos.responses.company.GetCompanyResponse;
+import com.example.springProjectTobeto.services.dtos.requests.company.AddCompanyRequest;
+import com.example.springProjectTobeto.services.dtos.requests.company.UpdateCompanyRequest;
+import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.entities.Company;
 import com.example.springProjectTobeto.repositories.CompanyRepository;
 import org.springframework.web.bind.annotation.GetMapping;

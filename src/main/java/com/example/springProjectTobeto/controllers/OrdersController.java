@@ -1,11 +1,10 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.order.AddOrderRequest;
-import com.example.springProjectTobeto.dtos.requests.order.UpdateOrderRequest;
-import com.example.springProjectTobeto.dtos.responses.order.GetOrderResponse;
+import com.example.springProjectTobeto.services.dtos.requests.order.AddOrderRequest;
+import com.example.springProjectTobeto.services.dtos.requests.order.UpdateOrderRequest;
+import com.example.springProjectTobeto.services.dtos.responses.order.GetOrderResponse;
 import com.example.springProjectTobeto.entities.Order;
 import com.example.springProjectTobeto.repositories.OrderRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,8 +1,8 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.car.AddCarRequest;
-import com.example.springProjectTobeto.dtos.requests.car.UpdateCarRequest;
-import com.example.springProjectTobeto.dtos.responses.car.GetCarResponse;
+import com.example.springProjectTobeto.services.dtos.requests.car.AddCarRequest;
+import com.example.springProjectTobeto.services.dtos.requests.car.UpdateCarRequest;
+import com.example.springProjectTobeto.services.dtos.responses.car.GetCarResponse;
 import com.example.springProjectTobeto.entities.Car;
 import com.example.springProjectTobeto.repositories.CarRepository;
 import org.springframework.web.bind.annotation.*;

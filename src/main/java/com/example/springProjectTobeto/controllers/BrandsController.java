@@ -1,8 +1,8 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.brand.AddBrandRequest;
-import com.example.springProjectTobeto.dtos.requests.brand.UpdateBrandRequest;
-import com.example.springProjectTobeto.dtos.responses.brand.GetBrandResponse;
+import com.example.springProjectTobeto.services.dtos.requests.brand.AddBrandRequest;
+import com.example.springProjectTobeto.services.dtos.requests.brand.UpdateBrandRequest;
+import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandResponse;
 import com.example.springProjectTobeto.entities.Brand;
 import com.example.springProjectTobeto.repositories.BrandRepository;
 import org.springframework.web.bind.annotation.*;

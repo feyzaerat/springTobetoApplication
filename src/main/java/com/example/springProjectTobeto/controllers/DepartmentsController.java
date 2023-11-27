@@ -1,7 +1,7 @@
 package com.example.springProjectTobeto.controllers;
 
-import com.example.springProjectTobeto.dtos.requests.department.UpdateDepartmentRequest;
-import com.example.springProjectTobeto.dtos.responses.department.GetDepartmentResponse;
+import com.example.springProjectTobeto.services.dtos.requests.department.UpdateDepartmentRequest;
+import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentResponse;
 import com.example.springProjectTobeto.entities.Department;
 import com.example.springProjectTobeto.repositories.DepartmentRepository;
 import org.springframework.web.bind.annotation.*;
