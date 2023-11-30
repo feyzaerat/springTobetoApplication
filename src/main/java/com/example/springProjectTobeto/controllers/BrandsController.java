@@ -1,62 +1,47 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.services.abstracts.BrandService;
 import com.example.springProjectTobeto.services.dtos.requests.brand.AddBrandRequest;
 import com.example.springProjectTobeto.services.dtos.requests.brand.UpdateBrandRequest;
 import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandResponse;
 import com.example.springProjectTobeto.entities.Brand;
 import com.example.springProjectTobeto.repositories.BrandRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/brands")
+
 public class BrandsController {
+    private final BrandService brandService;
 
-    private final BrandRepository brandRepository;
-
-    public BrandsController(BrandRepository brandRepository){
-        this.brandRepository = brandRepository;
+    public BrandsController(BrandService brandService){
+        this.brandService = brandService;
     }
-
-    @GetMapping
-    public List<Brand> getAll() {
-        return brandRepository.findAll();
+   @GetMapping
+    public List<Brand> getBrandList() {
+        return  this.brandService.getAll().reversed();
     }
 
     @GetMapping("{id}")
     public GetBrandResponse getById(@PathVariable int id) {
-        Brand brand = brandRepository.findById(id).orElseThrow();
-
-        GetBrandResponse dto = new GetBrandResponse();
-        dto.setName(brand.getName());
-
-        return dto;
+        return this.brandService.getById(id);
     }
     @PostMapping
-
-    public void add(@RequestBody AddBrandRequest brandForAddDto){
-
-        Brand brand = new Brand();
-        brand.setName(brandForAddDto.getName());
-        brand.setIsActive(brandForAddDto.getIsActive());
-        brand.setRank(brandForAddDto.getRank());
-
-        brandRepository.save(brand);
+    public void addBrand(@RequestBody AddBrandRequest request){
+        this.brandService.addBrand(request);
     }
 
     @PutMapping("{id}")
-    public void update(@PathVariable int id, @RequestBody UpdateBrandRequest brandForUpdateDto) {
-        Brand updateBrand = brandRepository.findById(id).orElseThrow();
+    public void updateBrand(@PathVariable int id, @RequestBody UpdateBrandRequest request) {
+         this.brandService.updateBrand(request);
 
-        updateBrand.setName(brandForUpdateDto.getName());
-
-        brandRepository.save(updateBrand);
     }
     @DeleteMapping("{id}")
-    public void delete(@PathVariable int id) {
-        Brand deleteBrand = brandRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("There is no brand id"));
-        brandRepository.delete(deleteBrand);
+    public void deleteBand(@PathVariable int id) {
+         this.brandService.deleteBrand(id);
+
     }
 }
