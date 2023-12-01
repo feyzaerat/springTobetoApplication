@@ -12,6 +12,5 @@ public class AddCustomerRequest {
     private String phone;
     private String mailAddress;
     private String address;
-    private int isActive;
-    private int rank;
+
 }

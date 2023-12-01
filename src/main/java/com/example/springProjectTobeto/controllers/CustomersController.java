@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.services.abstracts.CustomerService;
 import com.example.springProjectTobeto.services.dtos.requests.customer.AddCustomerRequest;
 import com.example.springProjectTobeto.services.dtos.requests.customer.UpdateCustomerRequest;
 import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerResponse;
@@ -12,60 +13,34 @@ import java.util.List;
 @RestController
 @RequestMapping("api/customers")
 public class CustomersController {
-    private final CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
-    public CustomersController(CustomerRepository customerRepository){
-        this.customerRepository = customerRepository;
+    public CustomersController(CustomerService customerService){
+        this.customerService = customerService;
     }
 
     @GetMapping
-    public List<Customer> getAll(){
-        return customerRepository.findAll();
+    public List<Customer> getCustomerList(){
+        return customerService.getAll();
     }
 
     @GetMapping("{id}")
     public GetCustomerResponse getById(@PathVariable int id){
-        Customer customer = customerRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no id"));
-        GetCustomerResponse dto = new GetCustomerResponse();
-        dto.setName(customer.getName());
-        dto.setPhone(customer.getPhone());
-        dto.setMailAddress(customer.getMailAddress());
-        dto.setAddress(customer.getAddress());
-
-        return dto;
+       return this.customerService.getById(id);
     }
 
     @PostMapping
-    public void addCustomer(@RequestBody AddCustomerRequest customerForAddDto) {
-
-        Customer customer = new Customer();
-        customer.setName(customerForAddDto.getName());
-        customer.setPhone(customerForAddDto.getPhone());
-        customer.setMailAddress(customerForAddDto.getMailAddress());
-        customer.setAddress(customerForAddDto.getAddress());
-        customer.setIsActive(customerForAddDto.getIsActive());
-        customer.setRank(customerForAddDto.getRank());
-
-        customerRepository.save(customer);
+    public void addCustomer(@RequestBody AddCustomerRequest addCustomerRequest) {
+        this.customerService.addCustomer(addCustomerRequest);
     }
 
     @PutMapping("{id}")
-    public void updateCustomer(@PathVariable int id, @RequestBody UpdateCustomerRequest customerForUpdateDto){
-        Customer updateCustomer = customerRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no id"));
-        updateCustomer.setName(customerForUpdateDto.getName());
-        updateCustomer.setPhone(customerForUpdateDto.getPhone());
-        updateCustomer.setMailAddress(customerForUpdateDto.getMailAddress());
-        updateCustomer.setAddress(customerForUpdateDto.getAddress());
-
-        customerRepository.save(updateCustomer);
+    public void updateCustomer(@PathVariable int id, @RequestBody UpdateCustomerRequest updateCustomerRequest){
+       this.customerService.updateCustomer(id,updateCustomerRequest);
     }
 
    @DeleteMapping("{id}")
     public void deleteCustomer(@PathVariable int id){
-        Customer deleteCustomer = customerRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("there is no id"));
-        customerRepository.delete(deleteCustomer);
+        this.customerService.deleteCustomer(id);
    }
 }
