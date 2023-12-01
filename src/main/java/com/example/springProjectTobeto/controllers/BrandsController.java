@@ -16,27 +16,24 @@ import java.util.List;
 
 public class BrandsController {
     private final BrandService brandService;
-
     public BrandsController(BrandService brandService){
         this.brandService = brandService;
     }
    @GetMapping
     public List<Brand> getBrandList() {
-        return  this.brandService.getAll().reversed();
+        return this.brandService.getAll();
     }
-
     @GetMapping("{id}")
     public GetBrandResponse getById(@PathVariable int id) {
         return this.brandService.getById(id);
     }
     @PostMapping
-    public void addBrand(@RequestBody AddBrandRequest request){
-        this.brandService.addBrand(request);
+    public void addBrand(@RequestBody AddBrandRequest addBrandRequest){
+        this.brandService.addBrand(addBrandRequest);
     }
-
     @PutMapping("{id}")
-    public void updateBrand(@PathVariable int id, @RequestBody UpdateBrandRequest request) {
-         this.brandService.updateBrand(request);
+    public void updateBrand(@PathVariable int id, @RequestBody UpdateBrandRequest updateBrandRequest) throws Exception {
+         this.brandService.updateBrand(id, updateBrandRequest);
 
     }
     @DeleteMapping("{id}")

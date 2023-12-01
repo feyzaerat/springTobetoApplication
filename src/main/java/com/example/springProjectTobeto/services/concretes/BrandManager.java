@@ -8,6 +8,7 @@ import com.example.springProjectTobeto.services.dtos.requests.brand.UpdateBrandR
 import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -33,23 +34,23 @@ public class BrandManager implements BrandService {
 
 
     @Override
-    public void addBrand(AddBrandRequest request){
-        if(request.getName().length() < 2 ){
+    public void addBrand(AddBrandRequest addBrandRequest){
+        if(addBrandRequest.getName().length() < 2 ){
             throw new RuntimeException("The Brand Can not be short than 2 letters !!!");
         }
 
         Brand brand = new Brand();
-        brand.setName(request.getName());
+        brand.setName(addBrandRequest.getName());
 
         brandRepository.save(brand);
     }
 
     @Override
-    public void updateBrand(UpdateBrandRequest request) {
-        Brand updateBrand = new Brand();
-        updateBrand.setName(request.getName());
+    public void updateBrand(@PathVariable int id,UpdateBrandRequest updateBrandRequest) throws Exception{
+        Brand updateBrand = brandRepository.findById(id).orElseThrow();
+        updateBrand.setName(updateBrandRequest.getName());
 
-        brandRepository.save(updateBrand);
+        this.brandRepository.save(updateBrand);
     }
     @Override
     public void deleteBrand(int id){

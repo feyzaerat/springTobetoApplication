@@ -25,7 +25,5 @@ public class Brand {
     private int isActive;
     private int rank;
 
-    @OneToMany(mappedBy = "brand")
-    @JsonIgnore
-    private List<Car> cars;
+
 }
