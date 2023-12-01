@@ -12,7 +12,6 @@ public class AddEmployeeRequest {
     private String phoneNumber;
     private String mailAddress;
     private String address;
-    private int isActive;
-    private int rank;
+
 
 }

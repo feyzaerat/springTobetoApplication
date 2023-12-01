@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.services.abstracts.EmployeeService;
 import com.example.springProjectTobeto.services.dtos.requests.employee.AddEmployeeRequest;
 import com.example.springProjectTobeto.services.dtos.requests.employee.UpdateEmployeeRequest;
 import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeResponse;
@@ -13,63 +14,34 @@ import java.util.List;
 @RequestMapping("api/employees")
 public class EmployeesController {
 
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    public EmployeesController(EmployeeRepository employeeRepository){
-        this.employeeRepository = employeeRepository;
+    public EmployeesController(EmployeeService employeeService){
+        this.employeeService = employeeService;
     }
 
     @GetMapping
-    public List<Employee> getAll(){return employeeRepository.findAll();}
+    public List<Employee> getEmployeeList(){return employeeService.getAll();}
 
     @GetMapping("{id}")
-    public GetEmployeeResponse getbyId(@PathVariable int id) {
-        Employee employee = employeeRepository.findById(id).orElseThrow();
-        GetEmployeeResponse dto = new GetEmployeeResponse();
-
-        dto.setFullName(employee.getFullName());
-        dto.setMailAddress(employee.getMailAddress());
-        dto.setPhoneNumber(employee.getPhoneNumber());
-        dto.setAddress(employee.getAddress());
-
-        return dto;
+    public GetEmployeeResponse getById(@PathVariable int id) {
+        return this.employeeService.getById(id);
     }
 
 
     @PostMapping
-    public void add(@RequestBody AddEmployeeRequest employeeForAddDto){
-
-        Employee employee = new Employee();
-
-        employee.setFullName(employeeForAddDto.getFullName());
-        employee.setPhoneNumber(employeeForAddDto.getPhoneNumber());
-        employee.setMailAddress(employeeForAddDto.getMailAddress());
-        employee.setAddress(employeeForAddDto.getAddress());
-        employee.setIsActive(employeeForAddDto.getIsActive());
-        employee.setRank(employeeForAddDto.getRank());
-
-        employeeRepository.save(employee);}
+    public void addEmployee(@RequestBody AddEmployeeRequest addEmployeeRequest) {
+        this.employeeService.addEmployee(addEmployeeRequest);
+    }
 
     @PutMapping("{id}")
-    public void update(@PathVariable int id,@RequestBody UpdateEmployeeRequest employeeForUpdateDto){
-        Employee updateEmployee = employeeRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("there is no Employee"));
-
-        updateEmployee.setFullName(employeeForUpdateDto.getFullName());
-        updateEmployee.setAddress(employeeForUpdateDto.getAddress());
-        updateEmployee.setMailAddress(employeeForUpdateDto.getMailAddress());
-        updateEmployee.setPhoneNumber(employeeForUpdateDto.getPhoneNumber());
-
-
-        employeeRepository.save(updateEmployee);
-
+    public void updateEmployee(@PathVariable int id,@RequestBody UpdateEmployeeRequest updateEmployeeRequest){
+       this.employeeService.updateEmployee(id ,updateEmployeeRequest);
     }
 
     @DeleteMapping("{id}")
     public void deleteEmployee(@PathVariable int id){
-        Employee deleteEmployee = employeeRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no id"));
-        employeeRepository.delete(deleteEmployee);
+        this.employeeService.deleteEmployee(id);
     }
 
 }
