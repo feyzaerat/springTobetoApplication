@@ -1,5 +1,7 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.services.abstracts.DepartmentService;
+import com.example.springProjectTobeto.services.dtos.requests.department.AddDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.requests.department.UpdateDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentResponse;
 import com.example.springProjectTobeto.entities.Department;
@@ -12,47 +14,35 @@ import java.util.List;
 @RequestMapping("api/departments")
 public class DepartmentsController {
 
-    private final DepartmentRepository departmentRepository;
+    private final DepartmentService departmentService;
 
-    public DepartmentsController(DepartmentRepository departmentRepository){
-        this.departmentRepository = departmentRepository;
+    public DepartmentsController(DepartmentService departmentService){
+        this.departmentService = departmentService;
     }
 
     @GetMapping
-    public List<Department> getAll(){
-        return departmentRepository.findAll();
+    public List<Department> getDepartmentList(){
+        return this.departmentService.getAll();
     }
 
     @GetMapping("{id}")
     public GetDepartmentResponse getById(@PathVariable int id){
-        Department department = departmentRepository.findById(id).orElseThrow();
-        GetDepartmentResponse dto= new GetDepartmentResponse();
-
-        dto.setName(department.getName());
-
-        return dto;
+       return this.departmentService.getById(id);
     }
 
     @PostMapping
-    public void add(@RequestBody Department department){
-        departmentRepository.save(department);
+    public void addDepartment(@RequestBody AddDepartmentRequest addDepartmentRequest){
+        this.departmentService.addDepartment(addDepartmentRequest);
     }
 
     @PutMapping("{id}")
-    public void updateDepartment(@PathVariable int id, @RequestBody UpdateDepartmentRequest departmentForUpdateDto){
-        Department updateDepartment = departmentRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no department"));
-        updateDepartment.setName(departmentForUpdateDto.getName());
-
-
-        departmentRepository.save(updateDepartment);
+    public void updateDepartment(@PathVariable int id, @RequestBody UpdateDepartmentRequest updateDepartmentRequest){
+        this.departmentService.updateDepartment(id,updateDepartmentRequest);
     }
 
     @DeleteMapping("{id}")
     public void deleteDepartment(@PathVariable int id){
-        Department deleteDepartment = departmentRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no id"));
-        departmentRepository.delete(deleteDepartment);
+        this.departmentService.deleteDepartment(id);
     }
 
 }
