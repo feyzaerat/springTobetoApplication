@@ -9,6 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetPolicyResponse {
     private String name;
-    private int isActive;
-    private int rank;
 }

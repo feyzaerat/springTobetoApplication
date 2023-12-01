@@ -1,10 +1,12 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.services.abstracts.PolicyService;
 import com.example.springProjectTobeto.services.dtos.requests.policy.AddPolicyRequest;
 import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolicyRequest;
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.repositories.PolicyRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,56 +14,33 @@ import java.util.List;
 @RestController
 @RequestMapping("api/policies")
 public class PoliciesController {
-    private final PolicyRepository policyRepository;
+    private final PolicyService policyService;
 
-    public PoliciesController(PolicyRepository policyRepository){
-        this.policyRepository = policyRepository;
+    public PoliciesController(PolicyService policyService){
+        this.policyService = policyService;
     }
 
     @GetMapping
-    public List<Policy> getAll(){
-        return policyRepository.findAll();
+    public List<Policy> getPolicyList(){
+        return policyService.getAll();
     }
 
     @GetMapping("{id}")
     public GetPolicyResponse getById(@PathVariable int id){
-        Policy policy = policyRepository.findById(id).orElseThrow();
-
-        GetPolicyResponse dto = new GetPolicyResponse();
-
-        dto.setName(policy.getName());
-        dto.setIsActive(policy.getIsActive());
-        dto.setRank(policy.getRank());
-
-        return dto;
+        return this.policyService.getById(id);
     }
-
     @PostMapping
-    public void add(@RequestBody AddPolicyRequest policyForAddDto){
-
-        Policy policy = new Policy();
-        policy.setName(policyForAddDto.getName());
-        policy.setIsActive(policy.getIsActive());
-        policy.setRank(policyForAddDto.getRank());
-
-        policyRepository.save(policy);
+    public void addPolicy(@RequestBody AddPolicyRequest addPolicyRequest){
+        this.policyService.addPolicy(addPolicyRequest);
     }
 
     @PutMapping("{id}")
-    public void updatePolicy(@PathVariable int id, @RequestBody UpdatePolicyRequest policyForUpdateDto){
-        Policy updatePolicy = policyRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no policy"));
-
-        updatePolicy.setName(policyForUpdateDto.getName());
-
-
-        policyRepository.save(updatePolicy);
+    public void updatePolicy(@PathVariable int id, @RequestBody UpdatePolicyRequest updatePolicyRequest){
+        this.policyService.updatePolicy(id,updatePolicyRequest);
     }
 
     @DeleteMapping("{id}")
     public void deletePolicy(@PathVariable int id){
-        Policy deletePolicy = policyRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("there is no record with this ID"));
-        policyRepository.delete(deletePolicy);
+        this.policyService.deletePolicy(id);
     }
 }

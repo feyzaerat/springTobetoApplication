@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class UpdatePolicyRequest {
-
     private String name;
 
 }

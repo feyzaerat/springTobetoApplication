@@ -9,6 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AddPolicyRequest {
     private String name;
-    private int isActive;
-    private int rank;
+
 }
