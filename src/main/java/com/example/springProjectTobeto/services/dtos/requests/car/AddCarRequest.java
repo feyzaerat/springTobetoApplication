@@ -11,6 +11,6 @@ public class AddCarRequest {
 
     private String modelName;
     private int modelYear;
-    private int isActive;
-    private int rank;
+
+
 }

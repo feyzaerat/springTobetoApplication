@@ -22,16 +22,10 @@ public class Car {
     @Column(name = "model_name")
     private String modelName;
 
-    @Column(name = "is_active")
-    private int isActive;
-
-    @Column(name = "rank")
-    private int rank;
 
 
-    @ManyToOne
-    @JoinColumn(name = "brand_id")
-    private Brand brand;
+
+
 
 
 }

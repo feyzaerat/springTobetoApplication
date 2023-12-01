@@ -11,4 +11,7 @@ import lombok.NoArgsConstructor;
 public class UpdateBrandRequest {
     private String name;
 
+
+
+
 }
