@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.services.abstracts.OrderService;
 import com.example.springProjectTobeto.services.dtos.requests.order.AddOrderRequest;
 import com.example.springProjectTobeto.services.dtos.requests.order.UpdateOrderRequest;
 import com.example.springProjectTobeto.services.dtos.responses.order.GetOrderResponse;
@@ -12,60 +13,33 @@ import java.util.List;
 @RestController
 @RequestMapping("api/orders")
 public class OrdersController {
-    private final OrderRepository orderRepository;
+    private final OrderService orderService;
 
-    public OrdersController(OrderRepository orderRepository){
-        this.orderRepository = orderRepository;
+    public OrdersController(OrderService orderService){
+        this.orderService = orderService;
     }
 
     @GetMapping
-    public List<Order>getAll(){
-        return orderRepository.findAll();
+    public List<Order>getOrderList(){
+        return orderService.getAll();
     }
 
     @GetMapping("{id}")
     public GetOrderResponse getById(@PathVariable int id){
-        Order order = orderRepository.findById(id).orElseThrow();
-        GetOrderResponse dto = new GetOrderResponse();
-
-        dto.setName(order.getName());
-        dto.setQuantity(order.getQuantity());
-        dto.setUnitPrice(order.getUnitPrice());
-
-        return dto;
+        return this.orderService.getById(id);
     }
     @PostMapping
-    public void add(@RequestBody AddOrderRequest orderForAddDto){
-
-        Order order = new Order();
-
-        order.setName(orderForAddDto.getName());
-        order.setUnitPrice(orderForAddDto.getUnitPrice());
-        order.setQuantity(orderForAddDto.getQuantity());
-        order.setIsActive(orderForAddDto.getIsActive());
-        order.setRank(orderForAddDto.getRank());
-
-        orderRepository.save(order);
+    public void add(@RequestBody AddOrderRequest addOrderRequest){
+        this.orderService.addOrder(addOrderRequest);
     }
     @PutMapping("{id}")
-    public void updateOrder(@PathVariable int id, @RequestBody UpdateOrderRequest orderForUpdateDto){
-        Order updateOrder = orderRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no order"));
-
-        updateOrder.setName(orderForUpdateDto.getName());
-        updateOrder.setQuantity(orderForUpdateDto.getQuantity());
-        updateOrder.setUnitPrice(orderForUpdateDto.getUnitPrice());
-
-
-
-        orderRepository.save(updateOrder);
+    public void updateOrder(@PathVariable int id, @RequestBody UpdateOrderRequest updateOrderRequest){
+       this.orderService.updateOrder(id,updateOrderRequest);
     }
 
     @DeleteMapping("{id}")
     public void deleteOrder(@PathVariable int id){
-        Order deleteOrder = orderRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no order"));
-        orderRepository.delete(deleteOrder);
+        this.orderService.deleteOrder(id);
     }
 
 }
