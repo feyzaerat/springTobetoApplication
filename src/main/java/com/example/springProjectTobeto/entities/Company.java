@@ -35,11 +35,7 @@ public class Company {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "is_active")
-    private int isActive;
 
-    @Column(name = "rank")
-    private int rank;
 
 
 

@@ -12,6 +12,5 @@ public class AddCompanyRequest {
     private String contactName;
     private String contactPhone;
     private String address;
-    private int isActive;
-    private int rank;
+
 }
