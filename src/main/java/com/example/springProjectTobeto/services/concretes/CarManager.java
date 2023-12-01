@@ -32,6 +32,7 @@ public class CarManager implements CarService {
         GetCarResponse dto = new GetCarResponse();
         dto.setModelName(car.getModelName());
         dto.setModelYear(car.getModelYear());
+       /* dto.setId(car.getBrand());*/
 
         return dto;
 
@@ -41,6 +42,7 @@ public class CarManager implements CarService {
        Car car = new Car();
        car.setModelName(addCarRequest.getModelName());
        car.setModelYear(addCarRequest.getModelYear());
+
 
        carRepository.save(car);
 

@@ -22,6 +22,10 @@ public class Car {
     @Column(name = "model_name")
     private String modelName;
 
+    /*@ManyToOne
+    @JoinColumn(name="brand_id")
+    private Brand brand;*/
+
 
 
 

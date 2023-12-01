@@ -18,12 +18,15 @@ public class Brand {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-
     @Column(name = "name")
     private String name;
     private int isActive;
     private int rank;
+
+
+    /*@OneToMany(mappedBy = "brand")
+    @JsonIgnore
+    private List<Car> cars;*/
 
 
 }
