@@ -21,7 +21,9 @@ public class CarsController {
     }
     @GetMapping
     public List<Car> getCarList(){
+
         return this.carService.getAll();
+
     }
     @GetMapping("{id}")
     public GetCarResponse getById(@PathVariable int id){

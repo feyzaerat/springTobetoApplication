@@ -5,11 +5,13 @@ import com.example.springProjectTobeto.repositories.CarRepository;
 import com.example.springProjectTobeto.services.abstracts.CarService;
 import com.example.springProjectTobeto.services.dtos.requests.car.AddCarRequest;
 import com.example.springProjectTobeto.services.dtos.requests.car.UpdateCarRequest;
+import com.example.springProjectTobeto.services.dtos.responses.car.GetCarListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.car.GetCarResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,6 +21,8 @@ public class CarManager implements CarService {
 
     @Override
     public List<Car> getAll(){
+        List<Car> carList = carRepository.findAll();
+        List<GetCarListResponse> getCarListResponses = new ArrayList<>();
         return carRepository.findAll();
     }
     @Override
