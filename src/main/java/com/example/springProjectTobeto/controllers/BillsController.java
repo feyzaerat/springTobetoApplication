@@ -1,4 +1,5 @@
 package com.example.springProjectTobeto.controllers;
+import com.example.springProjectTobeto.services.abstracts.BillService;
 import com.example.springProjectTobeto.services.dtos.requests.bill.AddBillRequest;
 import com.example.springProjectTobeto.services.dtos.requests.bill.UpdateBillRequest;
 import com.example.springProjectTobeto.services.dtos.responses.bill.GetBillResponse;
@@ -12,57 +13,35 @@ import java.util.List;
 @RequestMapping("api/bills")
 public class BillsController {
 
-    private final BillRepository billRepository;
+    private final BillService billService;
 
-    public BillsController(BillRepository billRepository){
-        this.billRepository = billRepository;
+    public BillsController(BillService billService){
+        this.billService = billService;
     }
 
     @GetMapping
-    public List<Bill> getAll(){
-        return billRepository.findAll();
+    public List<Bill> getBillList(){
+        return billService.getAll();
     }
 
     @GetMapping("{id}")
     public GetBillResponse getById(@PathVariable int id){
-        Bill bill = billRepository.findById(id).orElseThrow();
-
-        GetBillResponse dto = new GetBillResponse();
-
-        dto.setName(bill.getName());
-        dto.setAmount(bill.getAmount());
-
-        return dto;
+       return this.billService.getById(id);
     }
 
     @PostMapping
-    public void add(@RequestBody AddBillRequest billForAddDto){
-        Bill bill = new Bill();
-
-        bill.setName(billForAddDto.getName());
-        bill.setType(billForAddDto.getType());
-        bill.setAmount(billForAddDto.getAmount());
-        bill.setRank(billForAddDto.getRank());
-
-        billRepository.save(bill);
+    public void addBill(@RequestBody AddBillRequest addBillRequest){
+        this.billService.addBill(addBillRequest);
     }
 
     @PutMapping("{id}")
-    public void updateBill(@PathVariable int id, @RequestBody UpdateBillRequest billForUpdateDto){
-        Bill updateBill = billRepository.findById(id)
-                .orElseThrow(() ->new RuntimeException("There is no record " ));
-        updateBill.setName(billForUpdateDto.getName());
-        updateBill.setAmount(billForUpdateDto.getAmount());
-        updateBill.setType(billForUpdateDto.getType());
-
-        billRepository.save(updateBill);
+    public void updateBill(@PathVariable int id, @RequestBody UpdateBillRequest updateBillRequest){
+        this.billService.updateBill(id,updateBillRequest);
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
-        Bill deleteBill = billRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no bill id"));
-        billRepository.delete(deleteBill);
+       this.billService.deleteBill(id);
     }
 
 }
