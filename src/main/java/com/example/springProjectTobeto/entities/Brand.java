@@ -23,10 +23,8 @@ public class Brand {
     private int isActive;
     private int rank;
 
-
-    /*@OneToMany(mappedBy = "brand")
-    @JsonIgnore
-    private List<Car> cars;*/
-
-
+    // mappedBy => diğer classdaki attribute ismi
+    @OneToMany(mappedBy = "brand") // attribute ismi
+    @JsonIgnore // Bu alan jsona parse edilirken yok sayılacak.
+    private List<Car> cars;
 }

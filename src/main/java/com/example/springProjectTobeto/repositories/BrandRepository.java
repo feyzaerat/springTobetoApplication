@@ -1,11 +1,22 @@
 package com.example.springProjectTobeto.repositories;
 
-
 import com.example.springProjectTobeto.entities.Brand;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-//DATA jpa
-//Generic
+import java.util.List;
+
 public interface BrandRepository extends JpaRepository<Brand,Integer> {
+
+    // Derived Query Methods
+    List<Brand> findByNameLikeOrIdEquals(String name, int id);
+
+    // Select * from brands
+    // JPQL => SQL'dekinin tersine tablo ismi değil entity ismi kullanılır.
+    @Query("SELECT b FROM Brand b Where b.name LIKE %:name%")
+    List<Brand> search(String name);
+
+    @Query(value = "Select * from brands Where name LIKE %:name%", nativeQuery = true)
+    List<Brand> search2(String name);
 
 }

@@ -5,11 +5,13 @@ import com.example.springProjectTobeto.repositories.BrandRepository;
 import com.example.springProjectTobeto.services.abstracts.BrandService;
 import com.example.springProjectTobeto.services.dtos.requests.brand.AddBrandRequest;
 import com.example.springProjectTobeto.services.dtos.requests.brand.UpdateBrandRequest;
+import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -31,8 +33,6 @@ public class BrandManager implements BrandService {
 
         return dto;
     }
-
-
     @Override
     public void addBrand(AddBrandRequest addBrandRequest){
         if(addBrandRequest.getName().length() < 2 ){
@@ -56,4 +56,24 @@ public class BrandManager implements BrandService {
     public void deleteBrand(int id){
         this.brandRepository.deleteById(id);
     }
+
+    @Override
+    public List<GetBrandListResponse> getByName(String name, int id) {
+        List<Brand> brands = brandRepository.findByNameLikeOrIdEquals("%"+name+"%", id);
+        List<GetBrandListResponse> response = new ArrayList<>();
+
+        for (Brand brand: brands) {
+            response.add(new GetBrandListResponse(brand.getName()));
+        }
+        return response;
+    }
+
+    @Override
+    public List<Brand> search(String name) {
+        return brandRepository.search2(name);
+    }
+
+
+
+
 }
