@@ -15,16 +15,16 @@ import java.util.List;
 @NoArgsConstructor
 public class Brand {
     @Id
-    @Column(name = "id")
+    @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "name")
-    private String name;
-    private int isActive;
-    private int rank;
 
-    // mappedBy => diğer classdaki attribute ismi
-    @OneToMany(mappedBy = "brand") // attribute ismi
-    @JsonIgnore // Bu alan jsona parse edilirken yok sayılacak.
+    @Column(name="name")
+    private String name;
+
+
+
+    @OneToMany(mappedBy = "brand")
+    @JsonIgnore
     private List<Car> cars;
 }

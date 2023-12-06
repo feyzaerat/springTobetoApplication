@@ -48,7 +48,7 @@ public class BrandsController {
 
 
     @GetMapping("search")
-    public List<Brand> search(@RequestParam String name){
+    public List<GetBrandListResponse> search(@RequestParam String name){
         return this.brandService.search(name);
     }
 

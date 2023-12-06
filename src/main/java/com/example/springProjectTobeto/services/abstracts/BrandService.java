@@ -20,5 +20,5 @@ public interface BrandService {
     void deleteBrand(int id);
 
     List<GetBrandListResponse> getByName(String name, int id);
-    List<Brand> search(String name);
+    List<GetBrandListResponse> search(String name);
 }

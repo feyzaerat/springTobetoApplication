@@ -69,10 +69,14 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public List<Brand> search(String name) {
-        return brandRepository.search2(name);
-    }
+    public List<GetBrandListResponse> search(String name) {
+        List<Brand> brands = brandRepository.search2(name);
 
+        // MAP
+        // Lambda Expression & Stream API
+
+        return brandRepository.search3(name);
+    }
 
 
 
