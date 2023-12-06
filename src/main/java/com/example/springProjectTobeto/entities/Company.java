@@ -1,5 +1,6 @@
 package com.example.springProjectTobeto.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,6 +35,10 @@ public class Company {
 
     @Column(name = "address")
     private String address;
+
+    @OneToMany(mappedBy = "company")
+    @JsonIgnore
+    private List<Policy> policies;
 
 
 

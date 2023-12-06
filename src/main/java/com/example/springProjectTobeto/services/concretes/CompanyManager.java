@@ -5,11 +5,13 @@ import com.example.springProjectTobeto.repositories.CompanyRepository;
 import com.example.springProjectTobeto.services.abstracts.CompanyService;
 import com.example.springProjectTobeto.services.dtos.requests.company.AddCompanyRequest;
 import com.example.springProjectTobeto.services.dtos.requests.company.UpdateCompanyRequest;
+import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -61,6 +63,17 @@ public class CompanyManager implements CompanyService {
         Company deleteCompany = companyRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Delete Failed !! There is no any Company with this ID"));
         this.companyRepository.deleteById(id);
+    }
+
+    public List<GetCompanyListResponse>getByName(String name, int id){
+        List<Company> companies = companyRepository.findByNameOrIdEquals("%" + name + "%", id);
+        List<GetCompanyListResponse> response = new ArrayList<>();
+
+        for(Company company: companies){
+            response.add(new GetCompanyListResponse(company.getName()));
+        }
+        return response;
+
     }
 
 }

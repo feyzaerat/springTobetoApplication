@@ -3,6 +3,7 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.services.abstracts.CompanyService;
 import com.example.springProjectTobeto.services.dtos.requests.company.AddCompanyRequest;
 import com.example.springProjectTobeto.services.dtos.requests.company.UpdateCompanyRequest;
+import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.entities.Company;
 import com.example.springProjectTobeto.repositories.CompanyRepository;
@@ -45,5 +46,10 @@ public class CompaniesController {
     @DeleteMapping("{id}")
     public void deleteCompany(@PathVariable int id){
         this.companyService.deleteCompany(id);
+    }
+
+    @GetMapping("getByName")
+    public List<GetCompanyListResponse> getByName(@RequestParam String name, @RequestParam int id){
+        return this.companyService.getByName(name,id);
     }
 }
