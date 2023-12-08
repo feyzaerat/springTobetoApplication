@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface CompanyRepository extends JpaRepository<Company,Integer> {
 
-    List<Company> findByNameOrIdEquals(String name, int id);
+    List<Company> findByNameLikeOrIdEquals(String name, int id);
 
 }

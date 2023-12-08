@@ -12,6 +12,10 @@ public interface BrandRepository extends JpaRepository<Brand,Integer> {
     // Derived Query Methods
     List<Brand> findByNameLikeOrIdEquals(String name, int id);
 
+    List<Brand> findByName(String name);
+
+    boolean existByName(String name);
+
     // Select * from brands
     // JPQL => SQL'dekinin tersine tablo ismi değil entity ismi kullanılır.
     @Query("SELECT b FROM Brand b Where b.name LIKE %:name%")
@@ -25,5 +29,6 @@ public interface BrandRepository extends JpaRepository<Brand,Integer> {
     @Query("SELECT new com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandListResponse(b.name) " +
             "FROM Brand b Where b.name LIKE %:name%")
     List<GetBrandListResponse> search3(String name);
+
 
 }

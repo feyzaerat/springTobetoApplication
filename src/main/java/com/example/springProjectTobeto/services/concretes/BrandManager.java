@@ -35,10 +35,12 @@ public class BrandManager implements BrandService {
     }
     @Override
     public void addBrand(AddBrandRequest addBrandRequest){
-        if(addBrandRequest.getName().length() < 2 ){
-            throw new RuntimeException("The Brand Can not be short than 2 letters !!!");
-        }
 
+        boolean result = brandRepository.existByName(addBrandRequest.getName().trim());
+
+        if(result){
+            throw new RuntimeException("The Brand Name has to be Unique !!");
+        }
         Brand brand = new Brand();
         brand.setName(addBrandRequest.getName());
 

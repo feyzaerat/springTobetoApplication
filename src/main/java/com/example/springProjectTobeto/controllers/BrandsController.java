@@ -6,6 +6,7 @@ import com.example.springProjectTobeto.services.dtos.requests.brand.UpdateBrandR
 import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandResponse;
 import com.example.springProjectTobeto.entities.Brand;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,16 +19,16 @@ public class BrandsController {
     public BrandsController(BrandService brandService){
         this.brandService = brandService;
     }
-   /*@GetMapping
+   @GetMapping
     public List<Brand> getBrandList() {
         return this.brandService.getAll();
-    }*/
+    }
     @GetMapping("{id}")
     public GetBrandResponse getById(@PathVariable int id) {
         return this.brandService.getById(id);
     }
     @PostMapping
-    public void addBrand(@RequestBody AddBrandRequest addBrandRequest){
+    public void addBrand(@RequestBody @Valid AddBrandRequest addBrandRequest){
         this.brandService.addBrand(addBrandRequest);
     }
     @PutMapping("{id}")

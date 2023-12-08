@@ -66,7 +66,7 @@ public class CompanyManager implements CompanyService {
     }
 
     public List<GetCompanyListResponse>getByName(String name, int id){
-        List<Company> companies = companyRepository.findByNameOrIdEquals("%" + name + "%", id);
+        List<Company> companies = companyRepository.findByNameLikeOrIdEquals("%" + name + "%", id);
         List<GetCompanyListResponse> response = new ArrayList<>();
 
         for(Company company: companies){
