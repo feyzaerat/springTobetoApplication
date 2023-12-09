@@ -7,6 +7,7 @@ import com.example.springProjectTobeto.services.dtos.requests.car.UpdateCarReque
 import com.example.springProjectTobeto.services.dtos.responses.car.GetCarResponse;
 import com.example.springProjectTobeto.entities.Car;
 import com.example.springProjectTobeto.repositories.CarRepository;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class CarsController {
       return this.carService.getById(id);
     }
     @PostMapping
-    public void addCarr(@RequestBody AddCarRequest addCarRequest){
+    public void addCarr(@RequestBody @Valid AddCarRequest addCarRequest){
         this.carService.addCar(addCarRequest);
     }
     @PutMapping("{id}")

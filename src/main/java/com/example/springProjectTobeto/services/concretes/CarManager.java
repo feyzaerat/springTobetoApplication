@@ -39,6 +39,12 @@ public class CarManager implements CarService {
     }
     @Override
     public void addCar(AddCarRequest addCarRequest){
+
+        boolean result = carRepository.existsByModelName(addCarRequest.getModelName().trim());
+
+        if(result){
+            throw new RuntimeException("The model name has to be unique !!");
+        }
        Car car = new Car();
        car.setModelName(addCarRequest.getModelName());
        car.setModelYear(addCarRequest.getModelYear());
