@@ -28,6 +28,7 @@ public class DepartmentManager implements DepartmentService {
         GetDepartmentResponse dto = new GetDepartmentResponse();
         dto.setName(department.getName());
 
+
         return dto;
     }
 
