@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class AddCarRequest {
 
     @NotBlank(message = "You must enter the model name !!")
-    private String modelName;
+    private String name;
     private int modelYear;
     /*private Brand id;*/
 

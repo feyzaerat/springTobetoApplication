@@ -30,7 +30,7 @@ public class CarManager implements CarService {
         Car car = carRepository.findById(id).orElseThrow();
 
         GetCarResponse dto = new GetCarResponse();
-        dto.setModelName(car.getModelName());
+        dto.setModelName(car.getName());
         dto.setModelYear(car.getModelYear());
        /* dto.setId(car.getBrand());*/
 
@@ -40,13 +40,13 @@ public class CarManager implements CarService {
     @Override
     public void addCar(AddCarRequest addCarRequest){
 
-        boolean result = carRepository.existsByModelName(addCarRequest.getModelName().trim());
+        boolean result = carRepository.existsByName(addCarRequest.getName().trim());
 
         if(result){
             throw new RuntimeException("The model name has to be unique !!");
         }
        Car car = new Car();
-       car.setModelName(addCarRequest.getModelName());
+       car.setName(addCarRequest.getName());
        car.setModelYear(addCarRequest.getModelYear());
 
 
@@ -57,7 +57,7 @@ public class CarManager implements CarService {
     @Override
     public void updateCar(@PathVariable int id, UpdateCarRequest updateCarRequest){
         Car updateCar = carRepository.findById(id).orElseThrow();
-        updateCar.setModelName(updateCarRequest.getModelName());
+        updateCar.setName(updateCarRequest.getModelName());
         updateCar.setModelYear(updateCarRequest.getModelYear());
 
         this.carRepository.save(updateCar);

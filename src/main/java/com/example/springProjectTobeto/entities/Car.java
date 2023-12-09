@@ -19,8 +19,8 @@ public class Car {
     private int id;
     @Column(name = "model_year")
     private int modelYear;
-    @Column(name = "model_name")
-    private String modelName;
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne
     @JoinColumn(name="brand_id")
