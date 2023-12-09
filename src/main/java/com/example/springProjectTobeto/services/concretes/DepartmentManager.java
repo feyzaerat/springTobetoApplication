@@ -1,8 +1,10 @@
 package com.example.springProjectTobeto.services.concretes;
 
+import com.example.springProjectTobeto.entities.Brand;
 import com.example.springProjectTobeto.entities.Department;
 import com.example.springProjectTobeto.repositories.DepartmentRepository;
 import com.example.springProjectTobeto.services.abstracts.DepartmentService;
+import com.example.springProjectTobeto.services.dtos.requests.brand.AddBrandRequest;
 import com.example.springProjectTobeto.services.dtos.requests.department.AddDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.requests.department.UpdateDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentResponse;
@@ -32,10 +34,24 @@ public class DepartmentManager implements DepartmentService {
         return dto;
     }
 
-    public void addDepartment(AddDepartmentRequest addDepartmentRequest){
+    /*public void addDepartment(AddDepartmentRequest addDepartmentRequest){
         Department department = new Department();
 
         department.setName(addDepartmentRequest.getName());
+        departmentRepository.save(department);
+    }*/
+
+    @Override
+    public void addDepartment(AddDepartmentRequest addDepartmentRequest){
+
+        boolean result = departmentRepository.existByName(addDepartmentRequest.getName().trim());
+
+        if(result){
+            throw new RuntimeException("The Department Name has to be Unique !!");
+        }
+        Department department = new Department();
+        department.setName(addDepartmentRequest.getName());
+
         departmentRepository.save(department);
     }
     @Override
