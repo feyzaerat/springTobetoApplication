@@ -36,6 +36,11 @@ public class CustomerManager implements CustomerService {
     }
     @Override
     public void addCustomer(AddCustomerRequest addCustomerRequest){
+        boolean result = customerRepository.existsByMailAddress(addCustomerRequest.getName().trim());
+
+        if(result){
+            throw new RuntimeException("The Brand Name has to be Unique !!");
+        }
         Customer addCustomer = new Customer();
         addCustomer.setName(addCustomerRequest.getName());
         addCustomer.setMailAddress(addCustomerRequest.getMailAddress());

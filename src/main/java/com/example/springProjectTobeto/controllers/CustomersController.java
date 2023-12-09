@@ -6,6 +6,7 @@ import com.example.springProjectTobeto.services.dtos.requests.customer.UpdateCus
 import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerResponse;
 import com.example.springProjectTobeto.entities.Customer;
 import com.example.springProjectTobeto.repositories.CustomerRepository;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class CustomersController {
     }
 
     @PostMapping
-    public void addCustomer(@RequestBody AddCustomerRequest addCustomerRequest) {
+    public void addCustomer(@RequestBody @Valid AddCustomerRequest addCustomerRequest) {
         this.customerService.addCustomer(addCustomerRequest);
     }
 
