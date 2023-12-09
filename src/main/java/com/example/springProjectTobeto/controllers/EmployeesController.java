@@ -6,6 +6,7 @@ import com.example.springProjectTobeto.services.dtos.requests.employee.UpdateEmp
 import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeResponse;
 import com.example.springProjectTobeto.repositories.EmployeeRepository;
 import com.example.springProjectTobeto.entities.Employee;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class EmployeesController {
 
 
     @PostMapping
-    public void addEmployee(@RequestBody AddEmployeeRequest addEmployeeRequest) {
+    public void addEmployee(@RequestBody @Valid AddEmployeeRequest addEmployeeRequest) {
         this.employeeService.addEmployee(addEmployeeRequest);
     }
 

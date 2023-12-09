@@ -35,6 +35,15 @@ public class EmployeeManager implements EmployeeService {
     }
     @Override
     public void addEmployee(AddEmployeeRequest addEmployeeRequest){
+        boolean resultMail = employeeRepository.existsByMailAddress(addEmployeeRequest.getMailAddress().trim());
+        if(resultMail){
+            throw new RuntimeException("The mail address has to be unique !!!");
+        }
+        boolean resultPhone = employeeRepository.existsByPhoneNumber(addEmployeeRequest.getMailAddress().trim());
+        if(resultPhone){
+            throw new RuntimeException("The mail address has to be unique !!!");
+        }
+
         Employee addEmployee = new Employee();
         addEmployee.setFullName(addEmployeeRequest.getFullName());
         addEmployee.setMailAddress(addEmployeeRequest.getMailAddress());
