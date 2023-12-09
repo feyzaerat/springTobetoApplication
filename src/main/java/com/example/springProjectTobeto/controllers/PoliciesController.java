@@ -6,6 +6,7 @@ import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolic
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.repositories.PolicyRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +31,7 @@ public class PoliciesController {
         return this.policyService.getById(id);
     }
     @PostMapping
-    public void addPolicy(@RequestBody AddPolicyRequest addPolicyRequest){
+    public void addPolicy(@RequestBody @Valid AddPolicyRequest addPolicyRequest){
         this.policyService.addPolicy(addPolicyRequest);
     }
 

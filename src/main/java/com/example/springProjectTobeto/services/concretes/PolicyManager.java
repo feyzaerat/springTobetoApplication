@@ -32,6 +32,12 @@ public class PolicyManager implements PolicyService {
 
     }
     public void addPolicy(AddPolicyRequest addPolicyRequest){
+
+        boolean result = policyRepository.existsByName(addPolicyRequest.getName().trim());
+        if(result){
+            throw new RuntimeException("Policy name has to be unique !!");
+
+        }
         Policy addPolicy = new Policy();
         addPolicy.setName(addPolicyRequest.getName());
 
