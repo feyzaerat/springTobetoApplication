@@ -6,6 +6,7 @@ import com.example.springProjectTobeto.services.dtos.requests.order.UpdateOrderR
 import com.example.springProjectTobeto.services.dtos.responses.order.GetOrderResponse;
 import com.example.springProjectTobeto.entities.Order;
 import com.example.springProjectTobeto.repositories.OrderRepository;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class OrdersController {
         return this.orderService.getById(id);
     }
     @PostMapping
-    public void add(@RequestBody AddOrderRequest addOrderRequest){
+    public void add(@RequestBody @Valid AddOrderRequest addOrderRequest){
         this.orderService.addOrder(addOrderRequest);
     }
     @PutMapping("{id}")

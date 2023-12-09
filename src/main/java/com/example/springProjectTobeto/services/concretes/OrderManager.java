@@ -7,6 +7,7 @@ import com.example.springProjectTobeto.services.dtos.requests.order.AddOrderRequ
 import com.example.springProjectTobeto.services.dtos.requests.order.UpdateOrderRequest;
 import com.example.springProjectTobeto.services.dtos.responses.order.GetOrderResponse;
 import lombok.AllArgsConstructor;
+import org.aspectj.bridge.IMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -33,6 +34,11 @@ public class OrderManager implements OrderService {
     }
     @Override
     public void addOrder(AddOrderRequest addOrderRequest){
+        boolean results = orderRepository.existsByName(addOrderRequest.getName().trim());
+
+        if(results){
+            throw new RuntimeException("Order Name can not be empty !!");
+        }
         Order order = new Order();
         order.setName(addOrderRequest.getName());
         order.setQuantity(addOrderRequest.getQuantity());
