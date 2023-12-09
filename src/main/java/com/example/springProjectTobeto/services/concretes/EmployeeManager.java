@@ -39,9 +39,9 @@ public class EmployeeManager implements EmployeeService {
         if(resultMail){
             throw new RuntimeException("The mail address has to be unique !!!");
         }
-        boolean resultPhone = employeeRepository.existsByPhoneNumber(addEmployeeRequest.getMailAddress().trim());
+        boolean resultPhone = employeeRepository.existsByPhoneNumber(addEmployeeRequest.getPhoneNumber().trim());
         if(resultPhone){
-            throw new RuntimeException("The mail address has to be unique !!!");
+            throw new RuntimeException("The Phone Number has to be unique !!!");
         }
 
         Employee addEmployee = new Employee();
