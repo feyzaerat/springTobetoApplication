@@ -13,7 +13,7 @@ public interface DepartmentService {
 
     List<Department> getAll();
     GetDepartmentResponse getById(int id);
-    void addDepartment(@Valid AddDepartmentRequest addDepartmentRequest);
+    void addDepartment( AddDepartmentRequest addDepartmentRequest);
     void updateDepartment(@PathVariable int id, UpdateDepartmentRequest updateDepartmentRequest);
     void deleteDepartment(int id);
 

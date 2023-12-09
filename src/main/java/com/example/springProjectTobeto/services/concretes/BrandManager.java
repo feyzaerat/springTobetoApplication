@@ -36,7 +36,7 @@ public class BrandManager implements BrandService {
     @Override
     public void addBrand(AddBrandRequest addBrandRequest){
 
-        boolean result = brandRepository.existByName(addBrandRequest.getName().trim());
+        boolean result = brandRepository.existsByName(addBrandRequest.getName().trim());
 
         if(result){
             throw new RuntimeException("The Brand Name has to be Unique !!");

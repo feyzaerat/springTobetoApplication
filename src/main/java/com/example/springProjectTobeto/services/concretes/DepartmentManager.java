@@ -44,7 +44,7 @@ public class DepartmentManager implements DepartmentService {
     @Override
     public void addDepartment(AddDepartmentRequest addDepartmentRequest){
 
-        boolean result = departmentRepository.existByName(addDepartmentRequest.getName().trim());
+        boolean result = departmentRepository.existsByName(addDepartmentRequest.getName().trim());
 
         if(result){
             throw new RuntimeException("The Department Name has to be Unique !!");
