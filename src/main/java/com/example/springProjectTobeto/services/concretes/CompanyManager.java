@@ -38,6 +38,15 @@ public class CompanyManager implements CompanyService {
     }
     @Override
     public void addCompany(AddCompanyRequest addCompanyRequest){
+        boolean resultName = companyRepository.existsByName(addCompanyRequest.getName().trim());
+        if(resultName){
+            throw new RuntimeException("The company name has to be unique");
+        }
+        boolean resultPhone = companyRepository.existsByContactPhone(addCompanyRequest.getContactPhone().trim());
+        if(resultPhone){
+            throw new RuntimeException("The company name has to be unique");
+        }
+
         Company company = new Company();
 
         company.setName(addCompanyRequest.getName());

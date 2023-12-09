@@ -7,6 +7,7 @@ import com.example.springProjectTobeto.services.dtos.responses.company.GetCompan
 import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.entities.Company;
 import com.example.springProjectTobeto.repositories.CompanyRepository;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,7 @@ public class CompaniesController {
     }
 
     @PostMapping
-    public void addCompany(@RequestBody AddCompanyRequest addCompanyRequest) {
+    public void addCompany(@RequestBody @Valid AddCompanyRequest addCompanyRequest) {
         this.companyService.addCompany(addCompanyRequest);
     }
 
