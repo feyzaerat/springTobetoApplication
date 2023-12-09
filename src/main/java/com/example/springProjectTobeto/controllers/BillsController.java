@@ -5,6 +5,7 @@ import com.example.springProjectTobeto.services.dtos.requests.bill.UpdateBillReq
 import com.example.springProjectTobeto.services.dtos.responses.bill.GetBillResponse;
 import com.example.springProjectTobeto.entities.Bill;
 import com.example.springProjectTobeto.repositories.BillRepository;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class BillsController {
     }
 
     @PostMapping
-    public void addBill(@RequestBody AddBillRequest addBillRequest){
+    public void addBill(@RequestBody @Valid AddBillRequest addBillRequest){
         this.billService.addBill(addBillRequest);
     }
 

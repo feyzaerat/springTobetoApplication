@@ -34,6 +34,12 @@ public class BillManager implements BillService {
     }
     @Override
     public void addBill(AddBillRequest addBillRequest){
+
+        boolean result = billRepository.existsByName(addBillRequest.getName().trim());
+
+        if(result){
+            throw new RuntimeException("The Bill Name has to be unique !!");
+        }
         Bill addBill = new Bill();
         addBill.setName(addBillRequest.getName());
         addBill.setType(addBillRequest.getType());
