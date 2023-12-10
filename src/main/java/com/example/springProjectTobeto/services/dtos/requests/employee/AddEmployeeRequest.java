@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 public class AddEmployeeRequest {
     private String fullName;
-    @Length(min=10, max=10, message = "The phone number must be 10 digits !")
+    @Length(min = 10, max = 10, message = "The phone number must be 10 digits !")
     private String phoneNumber;
     private String mailAddress;
     private String address;

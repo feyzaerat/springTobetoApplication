@@ -13,7 +13,7 @@ public class AddCustomerRequest {
 
     @NotBlank(message = "You must enter the Customer Name !! ")
     private String name;
-    @Length(min=10, max=10, message = "The phone number  must be between of 10  digits !")
+    @Length(min = 10, max = 10, message = "The phone number  must be between of 10  digits !")
     private String phone;
     private String mailAddress;
     private String address;
