@@ -5,11 +5,13 @@ import com.example.springProjectTobeto.repositories.EmployeeRepository;
 import com.example.springProjectTobeto.services.abstracts.EmployeeService;
 import com.example.springProjectTobeto.services.dtos.requests.employee.AddEmployeeRequest;
 import com.example.springProjectTobeto.services.dtos.requests.employee.UpdateEmployeeRequest;
+import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -66,5 +68,17 @@ public class EmployeeManager implements EmployeeService {
     public void deleteEmployee(int id){
         this.employeeRepository.findById(id).orElseThrow();
         this.employeeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GetEmployeeListResponse> getByName(String fullName){
+        List<Employee> employees = employeeRepository.findByFullNameLike("%"+fullName+"%");
+        List<GetEmployeeListResponse> response = new ArrayList<>();
+
+        for (Employee employee:employees){
+            response.add(new GetEmployeeListResponse(employee.getFullName()));
+
+        }
+        return response;
     }
 }

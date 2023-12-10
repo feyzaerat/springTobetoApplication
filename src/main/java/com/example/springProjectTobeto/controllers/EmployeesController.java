@@ -3,8 +3,8 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.services.abstracts.EmployeeService;
 import com.example.springProjectTobeto.services.dtos.requests.employee.AddEmployeeRequest;
 import com.example.springProjectTobeto.services.dtos.requests.employee.UpdateEmployeeRequest;
+import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeResponse;
-import com.example.springProjectTobeto.repositories.EmployeeRepository;
 import com.example.springProjectTobeto.entities.Employee;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +43,11 @@ public class EmployeesController {
     @DeleteMapping("{id}")
     public void deleteEmployee(@PathVariable int id){
         this.employeeService.deleteEmployee(id);
+    }
+
+    @GetMapping("getByName")
+    public List<GetEmployeeListResponse> getByName(@RequestParam String fullName){
+        return this.employeeService.getByName(fullName);
     }
 
 }
