@@ -1,12 +1,11 @@
 package com.example.springProjectTobeto.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
-
-@Table(name="cars")
+@Table(name = "cars")
 @Entity
 @Data
 @AllArgsConstructor
@@ -23,13 +22,8 @@ public class Car {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="brand_id")
+    @JoinColumn(name = "brand_id")
     private Brand brand;
-
-
-
-
-
 
 
 }

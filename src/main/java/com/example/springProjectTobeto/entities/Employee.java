@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
 @Table(name = "employees")
 @Entity
 @Getter
@@ -32,7 +30,6 @@ public class Employee {
 
     @Column(name = "mail_address")
     private String mailAddress;
-
 
 
     @Column(name = "is_active")
