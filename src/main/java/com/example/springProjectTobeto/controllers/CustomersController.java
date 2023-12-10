@@ -3,6 +3,8 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.services.abstracts.CustomerService;
 import com.example.springProjectTobeto.services.dtos.requests.customer.AddCustomerRequest;
 import com.example.springProjectTobeto.services.dtos.requests.customer.UpdateCustomerRequest;
+import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyListResponse;
+import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerResponse;
 import com.example.springProjectTobeto.entities.Customer;
 import com.example.springProjectTobeto.repositories.CustomerRepository;
@@ -10,6 +12,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.SequencedSet;
 
 @RestController
 @RequestMapping("api/customers")
@@ -43,5 +46,10 @@ public class CustomersController {
    @DeleteMapping("{id}")
     public void deleteCustomer(@PathVariable int id){
         this.customerService.deleteCustomer(id);
+   }
+
+   @GetMapping("getByAddress")
+    public List<GetCustomerListResponse> getByAddress(@RequestParam String address){
+        return this.customerService.getByAddress(address);
    }
 }

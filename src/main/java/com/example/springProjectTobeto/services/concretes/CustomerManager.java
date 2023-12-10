@@ -6,11 +6,13 @@ import com.example.springProjectTobeto.services.abstracts.CustomerService;
 import com.example.springProjectTobeto.services.dtos.requests.customer.AddCustomerRequest;
 import com.example.springProjectTobeto.services.dtos.requests.customer.UpdateCustomerRequest;
 import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyResponse;
+import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -70,5 +72,17 @@ public class CustomerManager implements CustomerService {
         this.customerRepository.findById(id).orElseThrow(()->
                 new RuntimeException("Update Failed !! There is no any customer with this ID"));
         this.customerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GetCustomerListResponse> getByAddress(String address){
+        List<Customer> customers = customerRepository.findByAddressLike("%"+address+"%");
+        List<GetCustomerListResponse> response = new ArrayList<>();
+
+        for (Customer customer: customers){
+            response.add(new GetCustomerListResponse(customer.getAddress()));
+        }
+        return response;
+
     }
 }
