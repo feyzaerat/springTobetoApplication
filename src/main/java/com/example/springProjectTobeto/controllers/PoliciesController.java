@@ -1,14 +1,12 @@
 package com.example.springProjectTobeto.controllers;
 
+import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.services.abstracts.PolicyService;
 import com.example.springProjectTobeto.services.dtos.requests.policy.AddPolicyRequest;
 import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolicyRequest;
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
-import com.example.springProjectTobeto.entities.Policy;
-import com.example.springProjectTobeto.repositories.PolicyRepository;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,36 +16,37 @@ import java.util.List;
 public class PoliciesController {
     private final PolicyService policyService;
 
-    public PoliciesController(PolicyService policyService){
+    public PoliciesController(PolicyService policyService) {
         this.policyService = policyService;
     }
 
     @GetMapping
-    public List<Policy> getPolicyList(){
+    public List<Policy> getPolicyList() {
         return policyService.getAll();
     }
 
     @GetMapping("{id}")
-    public GetPolicyResponse getById(@PathVariable int id){
+    public GetPolicyResponse getById(@PathVariable int id) {
         return this.policyService.getById(id);
     }
+
     @PostMapping
-    public void addPolicy(@RequestBody @Valid AddPolicyRequest addPolicyRequest){
+    public void addPolicy(@RequestBody @Valid AddPolicyRequest addPolicyRequest) {
         this.policyService.addPolicy(addPolicyRequest);
     }
 
     @PutMapping("{id}")
-    public void updatePolicy(@PathVariable int id, @RequestBody UpdatePolicyRequest updatePolicyRequest){
-        this.policyService.updatePolicy(id,updatePolicyRequest);
+    public void updatePolicy(@PathVariable int id, @RequestBody UpdatePolicyRequest updatePolicyRequest) {
+        this.policyService.updatePolicy(id, updatePolicyRequest);
     }
 
     @DeleteMapping("{id}")
-    public void deletePolicy(@PathVariable int id){
+    public void deletePolicy(@PathVariable int id) {
         this.policyService.deletePolicy(id);
     }
 
     @GetMapping("getByName")
-    public List<GetPolicyListResponse> getByName(@RequestParam String name){
+    public List<GetPolicyListResponse> getByName(@RequestParam String name) {
         return this.policyService.getByName(name);
     }
 }
