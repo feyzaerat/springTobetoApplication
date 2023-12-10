@@ -3,6 +3,7 @@ package com.example.springProjectTobeto.services.abstracts;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.services.dtos.requests.policy.AddPolicyRequest;
 import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolicyRequest;
+import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -14,4 +15,6 @@ public interface PolicyService {
     void addPolicy(AddPolicyRequest addPolicyRequest);
     void updatePolicy(@PathVariable int id, UpdatePolicyRequest updatePolicyRequest);
     void deletePolicy(int id);
+
+    List<GetPolicyListResponse>getByName(String name);
 }

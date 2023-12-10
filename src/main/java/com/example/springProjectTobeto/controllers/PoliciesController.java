@@ -3,6 +3,7 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.services.abstracts.PolicyService;
 import com.example.springProjectTobeto.services.dtos.requests.policy.AddPolicyRequest;
 import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolicyRequest;
+import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
 import com.example.springProjectTobeto.entities.Policy;
 import com.example.springProjectTobeto.repositories.PolicyRepository;
@@ -43,5 +44,10 @@ public class PoliciesController {
     @DeleteMapping("{id}")
     public void deletePolicy(@PathVariable int id){
         this.policyService.deletePolicy(id);
+    }
+
+    @GetMapping("getByName")
+    public List<GetPolicyListResponse> getByName(@RequestParam String name){
+        return this.policyService.getByName(name);
     }
 }
