@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Table(name = "bills")
@@ -16,6 +17,7 @@ import java.util.Date;
 @NoArgsConstructor
 
 public class Bill {
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +34,9 @@ public class Bill {
 
     @Column(name = "rank")
     private int rank;
+
+    @Column(name = "created_at")
+    private LocalDate createdAt;
 
 
     @ManyToOne

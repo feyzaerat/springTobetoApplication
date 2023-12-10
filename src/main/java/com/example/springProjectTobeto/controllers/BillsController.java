@@ -2,12 +2,14 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.services.abstracts.BillService;
 import com.example.springProjectTobeto.services.dtos.requests.bill.AddBillRequest;
 import com.example.springProjectTobeto.services.dtos.requests.bill.UpdateBillRequest;
+import com.example.springProjectTobeto.services.dtos.responses.bill.GetBillListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.bill.GetBillResponse;
 import com.example.springProjectTobeto.entities.Bill;
 import com.example.springProjectTobeto.repositories.BillRepository;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -43,6 +45,12 @@ public class BillsController {
     @DeleteMapping("{id}")
     public void delete(@PathVariable int id){
        this.billService.deleteBill(id);
+    }
+
+    @GetMapping("getByName")
+    public  List<GetBillListResponse> getByName(@RequestParam String name ){
+        return this.billService.getByName(name);
+
     }
 
 }
