@@ -45,7 +45,7 @@ public class OrdersController {
         this.orderService.deleteOrder(id);
     }
 
-    @GetMapping("getByName")
+    @GetMapping("getByQuantity")
     public List<GetOrderListResponse> getByQuantity(@RequestParam int quantity) {
         return this.orderService.getByQuantity(quantity);
     }
