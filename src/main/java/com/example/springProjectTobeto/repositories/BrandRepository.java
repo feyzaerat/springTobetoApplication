@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface BrandRepository extends JpaRepository<Brand,Integer> {
+public interface BrandRepository extends JpaRepository<Brand, Integer> {
 
     // Derived Query Methods
     List<Brand> findByNameLikeOrIdEquals(String name, int id);
