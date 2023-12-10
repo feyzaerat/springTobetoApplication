@@ -16,8 +16,6 @@ public interface BrandRepository extends JpaRepository<Brand, Integer> {
 
     boolean existsByName(String name);
 
-    // Select * from brands
-    // JPQL => SQL'dekinin tersine tablo ismi değil entity ismi kullanılır.
     @Query("SELECT b FROM Brand b Where b.name LIKE %:name%")
     List<Brand> search(String name);
 

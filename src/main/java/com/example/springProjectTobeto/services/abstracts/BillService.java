@@ -20,6 +20,8 @@ public interface BillService {
 
     void deleteBill(int id);
 
-
     List<GetBillListResponse> getByName(String name);
+
+    List<GetBillListResponse>searchAsLike(String name);
+
 }

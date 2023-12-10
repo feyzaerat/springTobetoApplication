@@ -52,4 +52,10 @@ public class BillsController {
 
     }
 
+    @GetMapping("searchAsLike")
+    public List<GetBillListResponse> searchAsLike(@RequestParam String name){
+        return this.billService.searchAsLike(name);
+    }
+
+
 }

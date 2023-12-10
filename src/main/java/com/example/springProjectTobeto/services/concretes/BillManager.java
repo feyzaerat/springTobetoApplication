@@ -82,5 +82,11 @@ public class BillManager implements BillService {
         return response;
     }
 
+    @Override
+    public List<GetBillListResponse> searchAsLike(String name){
+        List<Bill> bills = billRepository.searchAsValue(name);
+        return billRepository.searchAsList(name);
+    }
+
 
 }
