@@ -7,15 +7,17 @@ import com.example.springProjectTobeto.services.dtos.responses.bill.GetBillListR
 import com.example.springProjectTobeto.services.dtos.responses.bill.GetBillResponse;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface BillService {
     List<Bill> getAll();
 
     GetBillResponse getById(int id);
+
     void addBill(AddBillRequest addBillRequest);
-    void updateBill(@PathVariable int id, UpdateBillRequest updateBillRequest)throws RuntimeException;
+
+    void updateBill(@PathVariable int id, UpdateBillRequest updateBillRequest) throws RuntimeException;
+
     void deleteBill(int id);
 
 

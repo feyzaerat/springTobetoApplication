@@ -11,10 +11,15 @@ import java.util.List;
 
 public interface CustomerService {
     List<Customer> getAll();
+
     List<GetCustomerListResponse> getByAddress(String address);
+
     GetCustomerResponse getById(int id);
+
     void addCustomer(AddCustomerRequest addCustomerRequest);
+
     void updateCustomer(@PathVariable int id, UpdateCustomerRequest updateCustomerRequest);
+
     void deleteCustomer(int id);
 
 }

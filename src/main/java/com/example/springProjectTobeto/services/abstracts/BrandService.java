@@ -12,7 +12,9 @@ import java.util.List;
 public interface BrandService {
 
     List<Brand> getAll();
+
     GetBrandResponse getById(int id);
+
     void addBrand(AddBrandRequest addBrandRequest);
 
     void updateBrand(@PathVariable int id, UpdateBrandRequest updateBrandRequest) throws Exception;
@@ -20,5 +22,6 @@ public interface BrandService {
     void deleteBrand(int id);
 
     List<GetBrandListResponse> getByName(String name, int id);
+
     List<GetBrandListResponse> search(String name);
 }

@@ -12,9 +12,13 @@ import java.util.List;
 public interface DepartmentService {
 
     List<Department> getAll();
+
     GetDepartmentResponse getById(int id);
+
     void addDepartment(AddDepartmentRequest addDepartmentRequest);
+
     void updateDepartment(@PathVariable int id, UpdateDepartmentRequest updateDepartmentRequest);
+
     void deleteDepartment(int id);
 
     List<GetDepartmentListResponse> getByName(String name);

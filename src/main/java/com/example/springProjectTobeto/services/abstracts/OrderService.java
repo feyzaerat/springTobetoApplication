@@ -12,9 +12,13 @@ import java.util.List;
 public interface OrderService {
 
     List<Order> getAll();
+
     GetOrderResponse getById(int id);
+
     void addOrder(AddOrderRequest addOrderRequest);
+
     void updateOrder(@PathVariable int id, UpdateOrderRequest updateOrderRequest);
+
     void deleteOrder(int id);
 
     List<GetOrderListResponse> getByQuantity(int quantity);
