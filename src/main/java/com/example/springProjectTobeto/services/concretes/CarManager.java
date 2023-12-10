@@ -57,8 +57,7 @@ public class CarManager implements CarService {
     @Override
     public void updateCar(@PathVariable int id, UpdateCarRequest updateCarRequest){
         Car updateCar = carRepository.findById(id).orElseThrow();
-        updateCar.setName(updateCarRequest.getModelName());
-        updateCar.setModelYear(updateCarRequest.getModelYear());
+        updateCar.setName(updateCarRequest.getName());
 
         this.carRepository.save(updateCar);
     }
@@ -66,5 +65,16 @@ public class CarManager implements CarService {
     @Override
     public void deleteCar(int id){
         this.carRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GetCarListResponse>getByName(String name, int id){
+        List<Car> cars = carRepository.findByNameLikeOrIdEquals("%"+name+"%", id);
+        List<GetCarListResponse> response = new ArrayList<>();
+
+        for (Car car: cars){
+            response.add(new GetCarListResponse(car.getName()));
+        }
+        return response;
     }
 }

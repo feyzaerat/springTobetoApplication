@@ -4,6 +4,7 @@ import com.example.springProjectTobeto.services.abstracts.CarService;
 import com.example.springProjectTobeto.services.dtos.requests.brand.AddBrandRequest;
 import com.example.springProjectTobeto.services.dtos.requests.car.AddCarRequest;
 import com.example.springProjectTobeto.services.dtos.requests.car.UpdateCarRequest;
+import com.example.springProjectTobeto.services.dtos.responses.car.GetCarListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.car.GetCarResponse;
 import com.example.springProjectTobeto.entities.Car;
 import com.example.springProjectTobeto.repositories.CarRepository;
@@ -42,5 +43,10 @@ public class CarsController {
     @DeleteMapping("{id}")
     public void deleteCar(@PathVariable int id){
         this.carService.deleteCar(id);
+    }
+
+    @GetMapping("getName")
+    public List<GetCarListResponse>getByName(@RequestParam String name, @RequestParam int id){
+        return this.carService.getByName(name,id);
     }
 }
