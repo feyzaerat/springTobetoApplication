@@ -5,11 +5,13 @@ import com.example.springProjectTobeto.repositories.DepartmentRepository;
 import com.example.springProjectTobeto.services.abstracts.DepartmentService;
 import com.example.springProjectTobeto.services.dtos.requests.department.AddDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.requests.department.UpdateDepartmentRequest;
+import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @Service
@@ -53,6 +55,17 @@ public class DepartmentManager implements DepartmentService {
     @Override
     public void deleteDepartment(int id){
         this.departmentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GetDepartmentListResponse> getByName(String name){
+        List<Department> departments = departmentRepository.findByNameLike("%"+name+"%");
+        List<GetDepartmentListResponse> response = new ArrayList<>();
+
+        for (Department department:departments){
+            response.add(new GetDepartmentListResponse(department.getName()));
+        }
+        return response;
     }
 
 }

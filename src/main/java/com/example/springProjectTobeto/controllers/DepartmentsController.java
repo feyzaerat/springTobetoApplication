@@ -3,6 +3,7 @@ package com.example.springProjectTobeto.controllers;
 import com.example.springProjectTobeto.services.abstracts.DepartmentService;
 import com.example.springProjectTobeto.services.dtos.requests.department.AddDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.requests.department.UpdateDepartmentRequest;
+import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentResponse;
 import com.example.springProjectTobeto.entities.Department;
 import com.example.springProjectTobeto.repositories.DepartmentRepository;
@@ -44,6 +45,11 @@ public class DepartmentsController {
     @DeleteMapping("{id}")
     public void deleteDepartment(@PathVariable int id){
         this.departmentService.deleteDepartment(id);
+    }
+
+    @GetMapping("getByName")
+    public List<GetDepartmentListResponse> getByName(@RequestParam String name){
+        return this.departmentService.getByName(name);
     }
 
 }
