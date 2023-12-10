@@ -5,12 +5,14 @@ import com.example.springProjectTobeto.repositories.OrderRepository;
 import com.example.springProjectTobeto.services.abstracts.OrderService;
 import com.example.springProjectTobeto.services.dtos.requests.order.AddOrderRequest;
 import com.example.springProjectTobeto.services.dtos.requests.order.UpdateOrderRequest;
+import com.example.springProjectTobeto.services.dtos.responses.order.GetOrderListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.order.GetOrderResponse;
 import lombok.AllArgsConstructor;
 import org.aspectj.bridge.IMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -63,6 +65,17 @@ public class OrderManager implements OrderService {
                 .orElseThrow(()->
                         new RuntimeException("There is no Any Order with this ID"));
         this.orderRepository.deleteById(id);
+    }
+
+    @Override
+    public List<GetOrderListResponse> getByQuantity(int quantity){
+        List<Order> orders = orderRepository.findByQuantityEquals(quantity);
+        List<GetOrderListResponse> response = new ArrayList<>();
+
+        for (Order order:orders){
+            response.add(new GetOrderListResponse(order.getQuantity()));
+        }
+        return response;
     }
 
 }

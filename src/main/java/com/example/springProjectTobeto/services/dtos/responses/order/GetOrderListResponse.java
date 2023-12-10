@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GetOrderListResponse {
 
-    private String name;
-    private double unitPrice;
     private int quantity;
-    private int isActive;
-    private int rank;
+
 }
