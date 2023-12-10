@@ -20,13 +20,14 @@ public class CompanyManager implements CompanyService {
     private final CompanyRepository companyRepository;
 
     @Override
-    public List<Company> getAll(){
+    public List<Company> getAll() {
         return companyRepository.findAll();
     }
+
     @Override
-    public GetCompanyResponse getById(int id) throws RuntimeException{
+    public GetCompanyResponse getById(int id) throws RuntimeException {
         Company company = companyRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no any company with this ID"));
+                .orElseThrow(() -> new RuntimeException("There is no any company with this ID"));
 
         GetCompanyResponse dto = new GetCompanyResponse();
         dto.setName(company.getName());
@@ -36,14 +37,15 @@ public class CompanyManager implements CompanyService {
 
         return dto;
     }
+
     @Override
-    public void addCompany(AddCompanyRequest addCompanyRequest){
+    public void addCompany(AddCompanyRequest addCompanyRequest) {
         boolean resultName = companyRepository.existsByName(addCompanyRequest.getName().trim());
-        if(resultName){
+        if (resultName) {
             throw new RuntimeException("The company name has to be unique");
         }
         boolean resultPhone = companyRepository.existsByContactPhone(addCompanyRequest.getContactPhone().trim());
-        if(resultPhone){
+        if (resultPhone) {
             throw new RuntimeException("The company name has to be unique");
         }
 
@@ -56,10 +58,11 @@ public class CompanyManager implements CompanyService {
 
         this.companyRepository.save(company);
     }
+
     @Override
-    public void updateCompany(@PathVariable int id, UpdateCompanyRequest updateCompanyRequest) throws RuntimeException{
+    public void updateCompany(@PathVariable int id, UpdateCompanyRequest updateCompanyRequest) throws RuntimeException {
         Company updateCompany = companyRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("There is no any company with this ID"));
+                .orElseThrow(() -> new RuntimeException("There is no any company with this ID"));
         updateCompany.setName(updateCompanyRequest.getName());
         updateCompany.setContactName(updateCompanyRequest.getContactName());
         updateCompany.setContactPhone(updateCompanyRequest.getContactPhone());
@@ -67,18 +70,19 @@ public class CompanyManager implements CompanyService {
 
         this.companyRepository.save(updateCompany);
     }
+
     @Override
-    public void deleteCompany(int id)throws RuntimeException{
+    public void deleteCompany(int id) throws RuntimeException {
         Company deleteCompany = companyRepository.findById(id)
-                .orElseThrow(()->new RuntimeException("Delete Failed !! There is no any Company with this ID"));
+                .orElseThrow(() -> new RuntimeException("Delete Failed !! There is no any Company with this ID"));
         this.companyRepository.deleteById(id);
     }
 
-    public List<GetCompanyListResponse>getByName(String name, int id){
+    public List<GetCompanyListResponse> getByName(String name, int id) {
         List<Company> companies = companyRepository.findByNameLikeOrIdEquals("%" + name + "%", id);
         List<GetCompanyListResponse> response = new ArrayList<>();
 
-        for(Company company: companies){
+        for (Company company : companies) {
             response.add(new GetCompanyListResponse(company.getName()));
         }
         return response;

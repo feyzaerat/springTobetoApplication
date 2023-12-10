@@ -21,9 +21,10 @@ public class BrandManager implements BrandService {
     private final BrandRepository brandRepository;
 
     @Override
-    public List<Brand> getAll(){
+    public List<Brand> getAll() {
         return brandRepository.findAll();
     }
+
     @Override
     public GetBrandResponse getById(int id) {
         Brand brand = brandRepository.findById(id).orElseThrow();
@@ -33,12 +34,13 @@ public class BrandManager implements BrandService {
 
         return dto;
     }
+
     @Override
-    public void addBrand(AddBrandRequest addBrandRequest){
+    public void addBrand(AddBrandRequest addBrandRequest) {
 
         boolean result = brandRepository.existsByName(addBrandRequest.getName().trim());
 
-        if(result){
+        if (result) {
             throw new RuntimeException("The Brand Name has to be Unique !!");
         }
         Brand brand = new Brand();
@@ -48,23 +50,24 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public void updateBrand(@PathVariable int id,UpdateBrandRequest updateBrandRequest) throws Exception{
+    public void updateBrand(@PathVariable int id, UpdateBrandRequest updateBrandRequest) throws Exception {
         Brand updateBrand = brandRepository.findById(id).orElseThrow();
         updateBrand.setName(updateBrandRequest.getName());
 
         this.brandRepository.save(updateBrand);
     }
+
     @Override
-    public void deleteBrand(int id){
+    public void deleteBrand(int id) {
         this.brandRepository.deleteById(id);
     }
 
     @Override
     public List<GetBrandListResponse> getByName(String name, int id) {
-        List<Brand> brands = brandRepository.findByNameLikeOrIdEquals("%"+name+"%", id);
+        List<Brand> brands = brandRepository.findByNameLikeOrIdEquals("%" + name + "%", id);
         List<GetBrandListResponse> response = new ArrayList<>();
 
-        for (Brand brand: brands) {
+        for (Brand brand : brands) {
             response.add(new GetBrandListResponse(brand.getName()));
         }
         return response;
@@ -77,7 +80,6 @@ public class BrandManager implements BrandService {
 
         return brandRepository.search3(name);
     }
-
 
 
 }

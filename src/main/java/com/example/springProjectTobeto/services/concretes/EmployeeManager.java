@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @AllArgsConstructor
 @Service
 
@@ -20,11 +21,12 @@ public class EmployeeManager implements EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Override
-    public List <Employee> getAll(){
+    public List<Employee> getAll() {
         return this.employeeRepository.findAll();
     }
+
     @Override
-    public GetEmployeeResponse getById(int id){
+    public GetEmployeeResponse getById(int id) {
         Employee employee = employeeRepository.findById(id).orElseThrow();
 
         GetEmployeeResponse dto = new GetEmployeeResponse();
@@ -35,14 +37,15 @@ public class EmployeeManager implements EmployeeService {
 
         return dto;
     }
+
     @Override
-    public void addEmployee(AddEmployeeRequest addEmployeeRequest){
+    public void addEmployee(AddEmployeeRequest addEmployeeRequest) {
         boolean resultMail = employeeRepository.existsByMailAddress(addEmployeeRequest.getMailAddress().trim());
-        if(resultMail){
+        if (resultMail) {
             throw new RuntimeException("The mail address has to be unique !!!");
         }
         boolean resultPhone = employeeRepository.existsByPhoneNumber(addEmployeeRequest.getPhoneNumber().trim());
-        if(resultPhone){
+        if (resultPhone) {
             throw new RuntimeException("The Phone Number has to be unique !!!");
         }
 
@@ -54,8 +57,9 @@ public class EmployeeManager implements EmployeeService {
 
         employeeRepository.save(addEmployee);
     }
+
     @Override
-    public void updateEmployee(@PathVariable int id, UpdateEmployeeRequest updateEmployeeRequest){
+    public void updateEmployee(@PathVariable int id, UpdateEmployeeRequest updateEmployeeRequest) {
         Employee updateEmployee = employeeRepository.findById(id).orElseThrow();
         updateEmployee.setFullName(updateEmployeeRequest.getFullName());
         updateEmployee.setMailAddress(updateEmployeeRequest.getMailAddress());
@@ -64,18 +68,19 @@ public class EmployeeManager implements EmployeeService {
 
         this.employeeRepository.save(updateEmployee);
     }
+
     @Override
-    public void deleteEmployee(int id){
+    public void deleteEmployee(int id) {
         this.employeeRepository.findById(id).orElseThrow();
         this.employeeRepository.deleteById(id);
     }
 
     @Override
-    public List<GetEmployeeListResponse> getByName(String fullName){
-        List<Employee> employees = employeeRepository.findByFullNameLike("%"+fullName+"%");
+    public List<GetEmployeeListResponse> getByName(String fullName) {
+        List<Employee> employees = employeeRepository.findByFullNameLike("%" + fullName + "%");
         List<GetEmployeeListResponse> response = new ArrayList<>();
 
-        for (Employee employee:employees){
+        for (Employee employee : employees) {
             response.add(new GetEmployeeListResponse(employee.getFullName()));
 
         }

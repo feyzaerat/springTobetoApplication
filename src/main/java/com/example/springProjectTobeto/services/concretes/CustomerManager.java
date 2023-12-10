@@ -5,7 +5,6 @@ import com.example.springProjectTobeto.repositories.CustomerRepository;
 import com.example.springProjectTobeto.services.abstracts.CustomerService;
 import com.example.springProjectTobeto.services.dtos.requests.customer.AddCustomerRequest;
 import com.example.springProjectTobeto.services.dtos.requests.customer.UpdateCustomerRequest;
-import com.example.springProjectTobeto.services.dtos.responses.company.GetCompanyResponse;
 import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.customer.GetCustomerResponse;
 import lombok.AllArgsConstructor;
@@ -21,11 +20,12 @@ public class CustomerManager implements CustomerService {
     private final CustomerRepository customerRepository;
 
     @Override
-    public List <Customer> getAll(){
+    public List<Customer> getAll() {
         return customerRepository.findAll();
     }
+
     @Override
-    public GetCustomerResponse getById(int id){
+    public GetCustomerResponse getById(int id) {
         Customer customer = customerRepository.findById(id).orElseThrow();
 
         GetCustomerResponse dto = new GetCustomerResponse();
@@ -36,16 +36,17 @@ public class CustomerManager implements CustomerService {
 
         return dto;
     }
+
     @Override
-    public void addCustomer(AddCustomerRequest addCustomerRequest){
+    public void addCustomer(AddCustomerRequest addCustomerRequest) {
         boolean resultMail = customerRepository.existsByMailAddress(addCustomerRequest.getMailAddress().trim());
 
-        if(resultMail){
+        if (resultMail) {
             throw new RuntimeException("The Mail address has to be Unique !!");
         }
         boolean resultPhone = customerRepository.existsByPhone(addCustomerRequest.getPhone().trim());
 
-        if(resultPhone){
+        if (resultPhone) {
             throw new RuntimeException("The Phone has to be Unique !!");
         }
         Customer addCustomer = new Customer();
@@ -56,9 +57,10 @@ public class CustomerManager implements CustomerService {
 
         customerRepository.save(addCustomer);
     }
+
     @Override
-    public void updateCustomer(@PathVariable int id, UpdateCustomerRequest updateCustomerRequest) throws RuntimeException{
-        Customer updateCustomer = customerRepository.findById(id).orElseThrow(()->
+    public void updateCustomer(@PathVariable int id, UpdateCustomerRequest updateCustomerRequest) throws RuntimeException {
+        Customer updateCustomer = customerRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Update Failed !! There is no any customer with this ID"));
         updateCustomer.setName(updateCustomerRequest.getName());
         updateCustomer.setMailAddress(updateCustomerRequest.getMailAddress());
@@ -67,19 +69,20 @@ public class CustomerManager implements CustomerService {
 
         this.customerRepository.save(updateCustomer);
     }
+
     @Override
-    public void deleteCustomer(int id){
-        this.customerRepository.findById(id).orElseThrow(()->
+    public void deleteCustomer(int id) {
+        this.customerRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Update Failed !! There is no any customer with this ID"));
         this.customerRepository.deleteById(id);
     }
 
     @Override
-    public List<GetCustomerListResponse> getByAddress(String address){
-        List<Customer> customers = customerRepository.findByAddressLike("%"+address+"%");
+    public List<GetCustomerListResponse> getByAddress(String address) {
+        List<Customer> customers = customerRepository.findByAddressLike("%" + address + "%");
         List<GetCustomerListResponse> response = new ArrayList<>();
 
-        for (Customer customer: customers){
+        for (Customer customer : customers) {
             response.add(new GetCustomerListResponse(customer.getAddress()));
         }
         return response;

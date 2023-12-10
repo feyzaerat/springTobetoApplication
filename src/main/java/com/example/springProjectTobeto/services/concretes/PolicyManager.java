@@ -18,12 +18,13 @@ import java.util.List;
 @Service
 public class PolicyManager implements PolicyService {
     private final PolicyRepository policyRepository;
+
     @Override
-    public List<GetPolicyListResponse> getByName(String name){
-        List<Policy>policies = policyRepository.findByNameLike("%"+name+"%");
+    public List<GetPolicyListResponse> getByName(String name) {
+        List<Policy> policies = policyRepository.findByNameLike("%" + name + "%");
         List<GetPolicyListResponse> response = new ArrayList<>();
 
-        for (Policy policy:policies){
+        for (Policy policy : policies) {
             response.add(new GetPolicyListResponse(policy.getName()));
         }
         return response;

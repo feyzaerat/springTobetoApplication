@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class DepartmentManager implements DepartmentService {
@@ -20,11 +21,12 @@ public class DepartmentManager implements DepartmentService {
     private final DepartmentRepository departmentRepository;
 
     @Override
-    public List<Department> getAll(){
+    public List<Department> getAll() {
         return departmentRepository.findAll();
     }
+
     @Override
-    public GetDepartmentResponse getById(int id){
+    public GetDepartmentResponse getById(int id) {
         Department department = departmentRepository.findById(id).orElseThrow();
 
         GetDepartmentResponse dto = new GetDepartmentResponse();
@@ -33,10 +35,10 @@ public class DepartmentManager implements DepartmentService {
         return dto;
     }
 
-    public void addDepartment(AddDepartmentRequest addDepartmentRequest){
+    public void addDepartment(AddDepartmentRequest addDepartmentRequest) {
         boolean result = departmentRepository.existsByName(addDepartmentRequest.getName().trim());
 
-        if(result){
+        if (result) {
             throw new RuntimeException("The Brand Name has to be Unique !!");
         }
         Department department = new Department();
@@ -44,8 +46,9 @@ public class DepartmentManager implements DepartmentService {
         department.setName(addDepartmentRequest.getName());
         departmentRepository.save(department);
     }
+
     @Override
-    public void updateDepartment(@PathVariable int id, UpdateDepartmentRequest requestUpdate){
+    public void updateDepartment(@PathVariable int id, UpdateDepartmentRequest requestUpdate) {
         Department updateDepartment = departmentRepository.findById(id).orElseThrow();
         updateDepartment.setName(requestUpdate.getName());
 
@@ -53,16 +56,16 @@ public class DepartmentManager implements DepartmentService {
     }
 
     @Override
-    public void deleteDepartment(int id){
+    public void deleteDepartment(int id) {
         this.departmentRepository.deleteById(id);
     }
 
     @Override
-    public List<GetDepartmentListResponse> getByName(String name){
-        List<Department> departments = departmentRepository.findByNameLike("%"+name+"%");
+    public List<GetDepartmentListResponse> getByName(String name) {
+        List<Department> departments = departmentRepository.findByNameLike("%" + name + "%");
         List<GetDepartmentListResponse> response = new ArrayList<>();
 
-        for (Department department:departments){
+        for (Department department : departments) {
             response.add(new GetDepartmentListResponse(department.getName()));
         }
         return response;
