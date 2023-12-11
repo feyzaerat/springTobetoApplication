@@ -89,4 +89,11 @@ public class CompanyManager implements CompanyService {
 
     }
 
+    @Override
+    public List<GetCompanyListResponse> searchAsLike(String name){
+        List<Company> companies = companyRepository.searchAsValue(name);
+
+        return companyRepository.searchAsList(name);
+    }
+
 }

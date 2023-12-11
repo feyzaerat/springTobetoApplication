@@ -22,4 +22,5 @@ public interface CompanyService {
     void deleteCompany(int id);
 
     List<GetCompanyListResponse> getByName(String name, int id);
+    List<GetCompanyListResponse> searchAsLike(String name);
 }
