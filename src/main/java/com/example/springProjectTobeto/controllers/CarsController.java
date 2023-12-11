@@ -52,4 +52,9 @@ public class CarsController {
     public List<GetCarListResponse> getByName(@RequestParam String name, @RequestParam int id) {
         return this.carService.getByName(name, id);
     }
+
+    @GetMapping("SearchAsLike")
+    public List<GetCarListResponse> searchAsLike(@RequestParam String name){
+        return this.carService.searchAsLike(name);
+    }
 }

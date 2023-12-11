@@ -80,4 +80,10 @@ public class CarManager implements CarService {
         }
         return response;
     }
+
+    @Override
+    public List<GetCarListResponse> searchAsLike(String name){
+        List<Car> cars = carRepository.searchAsValue(name);
+        return carRepository.searchAsList(name);
+    }
 }

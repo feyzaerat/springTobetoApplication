@@ -22,4 +22,6 @@ public interface CarService {
     void deleteCar(int id);
 
     List<GetCarListResponse> getByName(String name, int id);
+
+    List<GetCarListResponse> searchAsLike(String name);
 }
