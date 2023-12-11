@@ -86,4 +86,11 @@ public class EmployeeManager implements EmployeeService {
         }
         return response;
     }
+
+    @Override
+    public List<GetEmployeeListResponse> searchAsLike(String fullName){
+        List<Employee> employees = employeeRepository.searchAsValue(fullName);
+
+        return employeeRepository.searchAsList(fullName);
+    }
 }

@@ -19,4 +19,6 @@ public interface EmployeeService {
 
     List<GetEmployeeListResponse> getByName(String fullName);
 
+    List<GetEmployeeListResponse> searchAsLike(String fullName);
+
 }

@@ -52,4 +52,8 @@ public class EmployeesController {
         return this.employeeService.getByName(fullName);
     }
 
+    @GetMapping("searchAsLike")
+    public List<GetEmployeeListResponse> searchAsLike(@RequestParam String fullName){
+        return this.employeeService.searchAsLike(fullName);
+    }
 }
