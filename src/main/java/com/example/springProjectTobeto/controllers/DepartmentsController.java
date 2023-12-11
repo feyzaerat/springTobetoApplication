@@ -51,4 +51,9 @@ public class DepartmentsController {
         return this.departmentService.getByName(name);
     }
 
+    @GetMapping("searchAsLike")
+    public List<GetDepartmentListResponse>searchAsLike(@RequestParam String name){
+        return this.departmentService.searchAsLike(name);
+    }
+
 }

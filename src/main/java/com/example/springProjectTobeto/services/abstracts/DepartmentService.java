@@ -23,4 +23,6 @@ public interface DepartmentService {
 
     List<GetDepartmentListResponse> getByName(String name);
 
+    List<GetDepartmentListResponse> searchAsLike(String name);
+
 }

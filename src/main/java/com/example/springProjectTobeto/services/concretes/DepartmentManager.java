@@ -71,4 +71,11 @@ public class DepartmentManager implements DepartmentService {
         return response;
     }
 
+    @Override
+    public List<GetDepartmentListResponse> searchAsLike(String name){
+        List<Department> departments = departmentRepository.searchAsValue(name);
+
+        return departmentRepository.searchAsList(name);
+    }
+
 }
