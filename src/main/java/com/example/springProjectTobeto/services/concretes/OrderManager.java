@@ -80,4 +80,10 @@ public class OrderManager implements OrderService {
         return response;
     }
 
+    @Override
+    public List<GetOrderListResponse> searchAsLike(int quantity){
+        List<Order> orders = orderRepository.searchAsValue(quantity);
+        return orderRepository.searchAsList(quantity);
+    }
+
 }

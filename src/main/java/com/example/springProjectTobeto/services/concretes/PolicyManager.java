@@ -71,5 +71,12 @@ public class PolicyManager implements PolicyService {
         this.policyRepository.findById(id).orElseThrow(() -> new RuntimeException("Delete Failed !!"));
         this.policyRepository.deleteById(id);
     }
+
+    @Override
+    public List<GetPolicyListResponse> searchAsLike(String name){
+        List<Policy> policies = policyRepository.searchAsValue(name);
+
+        return policyRepository.searchAsList(name);
+    }
 }
 

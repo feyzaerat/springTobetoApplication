@@ -22,4 +22,6 @@ public interface OrderService {
     void deleteOrder(int id);
 
     List<GetOrderListResponse> getByQuantity(int quantity);
+
+    List<GetOrderListResponse> searchAsLike(int quantity);
 }

@@ -15,6 +15,7 @@ public interface PolicyService {
     void addPolicy(AddPolicyRequest addPolicyRequest);
     void updatePolicy(@PathVariable int id, UpdatePolicyRequest updatePolicyRequest);
     void deletePolicy(int id);
-
     List<GetPolicyListResponse>getByName(String name);
+
+    List<GetPolicyListResponse> searchAsLike(String name);
 }

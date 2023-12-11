@@ -7,6 +7,7 @@ import com.example.springProjectTobeto.services.dtos.requests.policy.UpdatePolic
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.policy.GetPolicyResponse;
 import jakarta.validation.Valid;
+import org.springframework.data.repository.cdi.Eager;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,5 +49,10 @@ public class PoliciesController {
     @GetMapping("getByName")
     public List<GetPolicyListResponse> getByName(@RequestParam String name) {
         return this.policyService.getByName(name);
+    }
+
+    @GetMapping("searchAsLike")
+    public List<GetPolicyListResponse>searchAsLike(@RequestParam String name){
+        return this.policyService.searchAsLike(name);
     }
 }

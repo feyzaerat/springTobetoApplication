@@ -50,4 +50,9 @@ public class OrdersController {
         return this.orderService.getByQuantity(quantity);
     }
 
+    @GetMapping("searchAsLike")
+    public List<GetOrderListResponse>searchAsLike(@RequestParam int quantity){
+        return this.orderService.searchAsLike(quantity);
+    }
+
 }
