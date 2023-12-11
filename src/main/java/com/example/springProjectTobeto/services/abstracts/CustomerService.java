@@ -14,6 +14,8 @@ public interface CustomerService {
 
     List<GetCustomerListResponse> getByAddress(String address);
 
+    List<GetCustomerListResponse> searchAsLike(String address);
+
     GetCustomerResponse getById(int id);
 
     void addCustomer(AddCustomerRequest addCustomerRequest);

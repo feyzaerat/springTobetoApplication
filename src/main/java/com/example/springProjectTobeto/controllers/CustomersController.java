@@ -49,4 +49,9 @@ public class CustomersController {
     public List<GetCustomerListResponse> getByAddress(@RequestParam String address) {
         return this.customerService.getByAddress(address);
     }
+
+    @GetMapping("SearchAsLike")
+    public List<GetCustomerListResponse>searchAsLike(@RequestParam String address){
+        return this.customerService.searchAsLike(address);
+    }
 }

@@ -88,4 +88,10 @@ public class CustomerManager implements CustomerService {
         return response;
 
     }
+
+    @Override
+    public List<GetCustomerListResponse> searchAsLike(String address){
+        List<Customer> customers = customerRepository.searchAsValue(address);
+        return customerRepository.searchAsList(address);
+    }
 }
