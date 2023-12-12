@@ -6,9 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.List;
-
 @Table(name = "orders")
 @Entity
 @Getter
@@ -50,14 +47,8 @@ public class Order {
 
 
     @ManyToOne
-    @JoinColumn(name="customer_id")
+    @JoinColumn(name = "customer_id")
     private Customer customer;
-
-
-
-
-
-
 
 
 }

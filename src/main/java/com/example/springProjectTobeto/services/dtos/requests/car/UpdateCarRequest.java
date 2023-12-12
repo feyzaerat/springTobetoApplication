@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCarRequest {
-    private String ModelName;
+    private String name;
     private int ModelYear;
 }

@@ -6,9 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-import java.util.List;
-
 @Table(name = "customers")
 @Entity
 @Getter
@@ -33,7 +30,6 @@ public class Customer {
 
     @Column(name = "address")
     private String address;
-
 
 
 }

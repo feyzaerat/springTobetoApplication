@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 @Table(name = "companies")
@@ -39,9 +38,6 @@ public class Company {
     @OneToMany(mappedBy = "company")
     @JsonIgnore
     private List<Policy> policies;
-
-
-
 
 
 }
