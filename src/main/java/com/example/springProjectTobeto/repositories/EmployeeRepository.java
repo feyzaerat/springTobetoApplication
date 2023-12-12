@@ -1,9 +1,7 @@
 package com.example.springProjectTobeto.repositories;
 
 
-import com.example.springProjectTobeto.entities.Brand;
 import com.example.springProjectTobeto.entities.Employee;
-import com.example.springProjectTobeto.services.dtos.responses.brand.GetBrandListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.employee.GetEmployeeListResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
