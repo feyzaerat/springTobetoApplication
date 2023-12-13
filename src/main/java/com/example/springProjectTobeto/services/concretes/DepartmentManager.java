@@ -38,16 +38,16 @@ public class DepartmentManager implements DepartmentService {
         return dto;
     }
 
-<<<<<<< HEAD
+
     /*public void addDepartment(AddDepartmentRequest addDepartmentRequest){
-=======
+
     public void addDepartment(AddDepartmentRequest addDepartmentRequest) {
         boolean result = departmentRepository.existsByName(addDepartmentRequest.getName().trim());
 
         if (result) {
             throw new RuntimeException("The Brand Name has to be Unique !!");
         }
->>>>>>> f144bca86c3fcdb3a669153a04492e6c8ab4c901
+
         Department department = new Department();
 
         department.setName(addDepartmentRequest.getName());

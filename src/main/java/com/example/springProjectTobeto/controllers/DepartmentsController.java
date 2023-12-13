@@ -6,11 +6,8 @@ import com.example.springProjectTobeto.services.dtos.requests.department.AddDepa
 import com.example.springProjectTobeto.services.dtos.requests.department.UpdateDepartmentRequest;
 import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentListResponse;
 import com.example.springProjectTobeto.services.dtos.responses.department.GetDepartmentResponse;
-<<<<<<< HEAD
 import com.example.springProjectTobeto.entities.Department;
 import com.example.springProjectTobeto.repositories.DepartmentRepository;
-=======
->>>>>>> f144bca86c3fcdb3a669153a04492e6c8ab4c901
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,11 +34,9 @@ public class DepartmentsController {
     }
 
     @PostMapping
-<<<<<<< HEAD
+
     public void addDepartment(@RequestBody @Valid AddDepartmentRequest addDepartmentRequest){
-=======
-    public void addDepartment(@RequestBody @Valid AddDepartmentRequest addDepartmentRequest) {
->>>>>>> f144bca86c3fcdb3a669153a04492e6c8ab4c901
+
         this.departmentService.addDepartment(addDepartmentRequest);
     }
 

@@ -7,32 +7,29 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-@RestControllerAdvice
-
-<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@ControllerAdvice
 
-=======
->>>>>>> f144bca86c3fcdb3a669153a04492e6c8ab4c901
+@RestControllerAdvice
+
+
+
+
+
+
+
 public class GlobalExceptionHandler {
 
     @ExceptionHandler({RuntimeException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-<<<<<<< HEAD
-    public ResponseEntity<String> handleRuntimeError(RuntimeException exception){
-        return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-=======
+
+
     public ResponseEntity<String> handleRuntimeError(RuntimeException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
->>>>>>> f144bca86c3fcdb3a669153a04492e6c8ab4c901
+
     @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleValidationException() {
