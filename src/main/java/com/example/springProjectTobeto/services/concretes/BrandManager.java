@@ -23,6 +23,8 @@ public class BrandManager implements BrandService {
     @Override
     public List<Brand> getAll() {
         return brandRepository.findAll();
+        //List<GetBrandListResponse> brandResponse = new ArrayList<>(GetBrandListResponse);
+
     }
 
     @Override
